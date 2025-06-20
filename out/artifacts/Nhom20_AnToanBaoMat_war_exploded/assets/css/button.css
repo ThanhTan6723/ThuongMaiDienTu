@@ -1,0 +1,14 @@
+.addCart {
+    background-color: #7fad39; /* Màu xanh lá cây */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px 20px; /* Kích thước đệm (tùy chỉnh) */
+    border: none; /* Xóa viền */
+    cursor: pointer; /* Thay đổi hình dạng con trỏ khi di chuột vào */
+    /* Thêm các thuộc tính khác tùy ý */
+}
+
+/* Hiển thị nút khi đưa chuột vào */
+.addCart:hover {
+    background-color: #66CC00; /* Màu xanh lá cây tối hơn khi hover */
+    /* Các thuộc tính khác khi đưa chuột vào tùy ý */
+}

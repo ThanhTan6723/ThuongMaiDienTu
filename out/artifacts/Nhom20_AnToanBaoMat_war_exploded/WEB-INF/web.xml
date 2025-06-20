@@ -1,0 +1,37 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!-- Cấu hình servlet -->
+  <servlet>
+    <servlet-name>InventoryProduct</servlet-name>
+    <servlet-class>controller.admin.product.InventoryProduct</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>InventoryProduct</servlet-name>
+    <url-pattern>/InventoryProduct</url-pattern>
+  </servlet-mapping>
+
+  <listener>
+    <listener-class>model.AppContextListener</listener-class>
+  </listener>
+
+  <!--  <servlet>
+      <servlet-name>ReviewControll</servlet-name>
+      <servlet-class>controller.client.product.ReviewControll</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ReviewControll</servlet-name>
+      <url-pattern>/ReviewControll</url-pattern>
+    </servlet-mapping>
+
+    Cấu hình welcome file -->
+  <welcome-file-list>
+    <welcome-file>IndexControll</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,376 @@
+.xBNaac {
+    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    height: 3px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+/* Modal Container */
+.modal-container {
+    margin: 0 auto; /* Canh giữa modal */
+    padding-top: 10px;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* Modal Content */
+.modalV-content {
+    background: #fff;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); /* Thêm shadow */
+    border: none; /* Loại bỏ viền */
+    margin: 0; /* Đảm bảo không có khoảng trắng ngoài modal */
+}
+
+/* Modal Header */
+.modalV-header {
+    background-color: #6fa6d6;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Modal Body */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.radio-item input {
+    margin-top: -5px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+/*!* Tùy chỉnh cho radio button *!*/
+/*.radio-item input[type="radio"] {*/
+/*    appearance: none; !* Loại bỏ kiểu mặc định *!*/
+/*    width: 14px;*/
+/*    height: 14px;*/
+/*    border: 2px solid #737373;*/
+/*    border-radius: 50%;*/
+/*    cursor: pointer;*/
+/*    transition: all 0.3s ease;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*!* Trạng thái được chọn *!*/
+/*.radio-item input[type="radio"]:checked {*/
+/*    border-color: #737373; !* Màu viền khi được chọn *!*/
+/*    background-color: rgb(197, 197, 197); !* Màu nền khi được chọn *!*/
+/*}*/
+
+.radio-item label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Input Key Section */
+#key-input-section1 {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 20px;
+}
+
+/* Input Key Section */
+#key-input-section1{
+    display: flex; /* Use flex to align items horizontally */
+    flex-direction: row; /* Ensure input and button are in a row */
+    align-items: center; /* Vertically align the items */
+    margin: 15px 20px;
+}
+
+#key-input1[type="password"] {
+    font-family: "Arial", "Helvetica", sans-serif; /* Chọn font tròn */
+    font-size: 16px; /* Điều chỉnh kích thước dấu tròn */
+    letter-spacing: 2px; /* Khoảng cách giữa các dấu tròn */
+    border: 1px solid #ccc;
+    color: #272727;
+    /*border-radius: 30px; !* Bo góc input *!*/
+    padding: 5px 10px;
+    outline: none;
+}
+
+#key-input1{
+    width: calc(100% - 90px); /* Adjust width to leave space for the button */
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    margin-right: 10px; /* Add space between input and button */
+}
+
+#load-key-btn1 {
+    background-color: #ffffff;
+    color: #ff6868;
+    border: 1px solid #ff6868;
+    padding: 6px 10px;
+    border-radius: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#load-key-btn1:hover {
+    background-color: #ff7868;
+    color: #ffffff;
+}
+
+/* Input Key Section */
+#key-input-section2 {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px 20px;
+}
+
+/* Input Key Section */
+#key-input-section2{
+    display: flex; /* Use flex to align items horizontally */
+    flex-direction: row; /* Ensure input and button are in a row */
+    align-items: center; /* Vertically align the items */
+    margin: 15px 20px;
+}
+
+#key-input2[type="password"] {
+    font-family: "Arial", "Helvetica", sans-serif; /* Chọn font tròn */
+    font-size: 16px; /* Điều chỉnh kích thước dấu tròn */
+    letter-spacing: 2px; /* Khoảng cách giữa các dấu tròn */
+    border: 1px solid #ccc;
+    color: #272727;
+    /*border-radius: 30px; !* Bo góc input *!*/
+    padding: 5px 10px;
+    outline: none;
+}
+
+#key-input2{
+    width: calc(100% - 90px); /* Adjust width to leave space for the button */
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    margin-right: 10px; /* Add space between input and button */
+}
+
+#load-key-btn2 {
+    background-color: #ffffff;
+    color: #ff6868;
+    border: 1px solid #ff6868;
+    padding: 6px 10px;
+    border-radius: 18px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#load-key-btn2:hover {
+    background-color: #ff7868;
+    color: #ffffff;
+}
+
+/* Modal Footer */
+.modalV-footer {
+    text-align: right;
+    border-top: 1px solid #d8d8d8;
+    margin-top: 15px;
+}
+
+.confirm {
+    background-color: #6fa6d6;
+    color: white;
+    border: none;
+    margin: 15px 30px 15px 0px;
+    padding: 6px 12px;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.confirm:hover {
+    background-color: #6ca1cf;
+}
+
+/* Modal Container */
+.modal-container {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Header */
+.modalI-header {
+    background-color: #6fa6d6;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+/* Body */
+.modalI-body {
+    padding: 20px;
+    text-align: left;
+}
+
+.modalI-body label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #468ad2;
+}
+
+.hash-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hash-input input {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+}
+
+.hash-input button {
+    background-color: #ffffff;
+    color: #6fa6d6;
+    border: 1px solid #6fa6d6;
+    padding: 6px 14px;
+    border-radius: 30px;
+    cursor: not-allowed;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+/* Tool Link beside label */
+.modalI-body label[for="tool-link"] {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.tool-link {
+    color: #ff6a6a;
+    text-decoration: none;
+    font-size: 16px;
+    vertical-align: middle; /* Đảm bảo link căn giữa với label */
+}
+
+.tool-link:hover {
+    text-decoration: underline;
+    color: #ff6060;
+}
+
+.note {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    /*margin-left: 15px;*/
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+#sign-input[type="password"] {
+    font-family: "Arial", "Helvetica", sans-serif; /* Chọn font tròn */
+    font-size: 16px; /* Điều chỉnh kích thước dấu tròn */
+    letter-spacing: 2px; /* Khoảng cách giữa các dấu tròn */
+    border: 1px solid #ccc;
+    color: #272727;
+    /*border-radius: 30px; !* Bo góc input *!*/
+    padding: 5px 10px;
+    outline: none;
+}
+/* Footer */
+.modalI-footer {
+    border-top: 1px solid #dddddd;
+    text-align: right;
+    padding: 10px 20px 20px;
+}
+
+.back-btn {
+    background-color: #ffffff;
+    color: #ff6868;
+    border: 1px solid #ff6868;
+    margin-right: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    background-color: #ff6767;
+    color: #ffffff;
+}
+
+.continue-btn {
+    background-color: #6fa6d6;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.continue-btn:hover {
+    background-color: #4a8bc4;
+}
+
+.custom-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*margin-top: -120px;*/
+    transform: translate(-50%, -50%);
+    background-color: rgba(60, 60, 60, 0.8);
+    color: #fff;
+    max-width: 500px;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+    text-align: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.custom-notification.hide {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-content span {
+    font-weight: bold;
+}
+
+
