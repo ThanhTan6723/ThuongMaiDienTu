@@ -397,10 +397,10 @@
                                         <input type="radio" id="qr" name="paymentMethod" value="qr">
                                         <label for="qr">Quét mã QR</label>
                                     </div>
-                                    <%--                                    <div class="radio-item">--%>
-                                    <%--                                        <input type="radio" id="credit" name="paymentMethod" value="credit">--%>
-                                    <%--                                        <label for="credit">Thẻ tín dụng/Ghi nợ</label>--%>
-                                    <%--                                    </div>--%>
+                                    <div class="radio-item">
+                                        <input type="radio" id="credit" name="paymentMethod" value="vnpay">
+                                        <label for="credit">Vnpay</label>
+                                    </div>
                                     <div class="radio-item">
                                         <input type="radio" id="cod" name="paymentMethod" value="cod">
                                         <label for="cod">Thanh toán khi nhận hàng</label>
@@ -462,37 +462,77 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const paymentButton = document.getElementById('payment-button');
-        // Xử lý sự kiện khi nhấn Thanh toán
-        paymentButton.addEventListener('click', function () {
-            if (!validate()) {
-                return; // Không mở modal nếu không hợp lệ
-            }
+        const form = document.getElementById('form');
 
-            // Hiển thị modal
-            const modal = document.getElementById('confirmationModal');
-            modal.style.display = 'flex'; // Hiển thị modal
+        paymentButton.addEventListener('click', function () {
+            if (!validate()) return;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            if (paymentMethod === 'vnpay') {
+                form.action = '/VNPayPaymentServlet';
+                form.submit();
+            } else if (paymentMethod === 'qr') {
+                const modal = document.getElementById('confirmationModal');
+                modal.style.display = 'flex';
+            } else if (paymentMethod === 'cod') {
+                form.action = '/PaymentInsertControll';
+                form.submit();
+            }
         });
 
+        document.getElementById('cancel-payment').addEventListener('click', function () {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'none';
+        });
     });
-
-
-    // Hàm kiểm tra phương thức thanh toán
     function validate() {
         const qr = document.getElementById('qr');
+        const vnpay = document.getElementById('credit');
         const cod = document.getElementById('cod');
         const paymentError = document.getElementById('payment-error');
         let valid = true;
-
-        // Kiểm tra nếu không chọn phương thức thanh toán
-        if (!qr.checked && !cod.checked) {
+        if (!qr.checked && !vnpay.checked && !cod.checked) {
             paymentError.textContent = 'Vui lòng chọn một hình thức thanh toán';
             valid = false;
         } else {
-            paymentError.textContent = ''; // Xóa thông báo lỗi nếu đã chọn phương thức thanh toán
+            paymentError.textContent = '';
         }
-
         return valid;
     }
+</script>
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        const paymentButton = document.getElementById('payment-button');--%>
+<%--        // Xử lý sự kiện khi nhấn Thanh toán--%>
+<%--        paymentButton.addEventListener('click', function () {--%>
+<%--            if (!validate()) {--%>
+<%--                return; // Không mở modal nếu không hợp lệ--%>
+<%--            }--%>
+
+<%--            // Hiển thị modal--%>
+<%--            const modal = document.getElementById('confirmationModal');--%>
+<%--            modal.style.display = 'flex'; // Hiển thị modal--%>
+<%--        });--%>
+
+<%--    });--%>
+
+
+<%--    // Hàm kiểm tra phương thức thanh toán--%>
+<%--    function validate() {--%>
+<%--        const qr = document.getElementById('qr');--%>
+<%--        const cod = document.getElementById('cod');--%>
+<%--        const paymentError = document.getElementById('payment-error');--%>
+<%--        let valid = true;--%>
+
+<%--        // Kiểm tra nếu không chọn phương thức thanh toán--%>
+<%--        if (!qr.checked && !cod.checked) {--%>
+<%--            paymentError.textContent = 'Vui lòng chọn một hình thức thanh toán';--%>
+<%--            valid = false;--%>
+<%--        } else {--%>
+<%--            paymentError.textContent = ''; // Xóa thông báo lỗi nếu đã chọn phương thức thanh toán--%>
+<%--        }--%>
+
+<%--        return valid;--%>
+<%--    }--%>
 
 
 

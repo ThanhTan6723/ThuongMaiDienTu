@@ -25,10 +25,12 @@ public class ListUsersControll extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
 
+//        List<Account> list = AccountsDAO.getListAccount();
+
         List<Account> list = new ArrayList<>();
-        if (account.getRole().getId() == 1) {
+        if (account.getRole().getId() == 2) {
             list = AccountsDAO.getListAccountOnRole(1);
-        }else if (account.getRole().getId() == 2){
+        }else if (account.getRole().getId() == 3){
             list = AccountsDAO.getListAccountOnRole(2);
         }
         String json = new Gson().toJson(list);

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-//import dao.client.ProductDAO;
-
 public class Product {
 	private int id;
 	private String name;

@@ -13,13 +13,30 @@ import model.Account;
 public class AccountsDAO {
     Connection connection = JDBCUtil.getConnection();
 
+    public static List<Account> getListAccount() {
+        ArrayList<Account> list = new ArrayList<>();
+        String query = "select * from Accounts";
+        try {
+            Connection con = JDBCUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        AccountDAO.getRole(rs.getInt(6)), rs.getInt(7), rs.getBoolean(8)));
+            }
+        } catch (Exception e) {
+
+        }
+        return list;
+    }
+
     public static List<Account> getListAccountOnRole(int roleId) {
         ArrayList<Account> list = new ArrayList<>();
         String query = null;
         if(roleId ==1){
-            query = "select * from Accounts where role_id in (0,2,3,4,5)";
+            query = "select * from Accounts where role_id in (1,3,4,5)";
         }else if(roleId == 2){
-            query = "select * from Accounts where role_id in(0,3,4,5)";
+            query = "select * from Accounts where role_id in(1,2,4,5)";
         }
         try {
             Connection con = JDBCUtil.getConnection();

@@ -32,7 +32,7 @@ public class PaymentInsertControll extends HttpServlet {
 //        String data = order.toString() + orderDetail.toString();
 //        System.out.println("Data: " + data);
 
-        if (order != null && order != null) {
+        if (order != null && orderDetail != null) {
             OrderDAO.insertOrder(order);
             OrderDAO.setCurrentIdBill(order);
             for (OrderDetail od : orderDetail) {

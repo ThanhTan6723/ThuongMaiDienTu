@@ -14,7 +14,7 @@
         <li class="nav-item nav-category">
             <span class="nav-link">MENU ADMIN</span>
         </li>
-        <c:if test="${acc.role.id==1}">
+        <c:if test="${acc.role.id==2}">
         <li class="nav-item menu-items">
             <a class="nav-link" href="IndexAdminControll">
               <span class="menu-icon">
@@ -24,7 +24,7 @@
             </a>
         </li>
         </c:if>
-        <c:if test="${acc.role.id == 2 or acc.role.id == 1}">
+        <c:if test="${acc.role.id == 2 or acc.role.id == 3}">
         <li class="nav-item menu-items">
             <a class="nav-link" href="./LoadUserPage">
               <span class="menu-icon">
@@ -35,7 +35,7 @@
         </li>
         </c:if>
 
-        <c:if test="${acc.role.id == 4 or acc.role.id == 1}">
+        <c:if test="${acc.role.id == 4 or acc.role.id == 2}">
         <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
@@ -77,7 +77,7 @@
         </li>
         </c:if>
 
-        <c:if test="${acc.role.id == 3 or acc.role.id == 1}">
+        <c:if test="${acc.role.id == 3 or acc.role.id == 2}">
         <li class="nav-item menu-items">
             <a class="nav-link" href="./LoadBillControll">
               <span class="menu-icon">
@@ -88,7 +88,7 @@
         </li>
         </c:if>
 
-        <c:if test="${acc.role.id == 1}">
+        <c:if test="${acc.role.id == 2}">
         <li class="nav-item menu-items">
             <a class="nav-link" href="./LoadLogPageControll">
               <span class="menu-icon">

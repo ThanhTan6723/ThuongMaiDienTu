@@ -161,10 +161,10 @@ public class LoginControll extends HttpServlet {
                 response.addCookie(c1);
                 response.addCookie(c2);
 
-              if(account.getRole().getId()==0){
+              if(account.getRole().getId()==1){
                   response.sendRedirect(request.getContextPath() + "IndexControll");
               }
-              if(account.getRole().getId()==1){
+              if(account.getRole().getId()==2 || account.getRole().getId()==3 || account.getRole().getId()==4 || account.getRole().getId()==5){
                   response.sendRedirect(request.getContextPath() + "IndexAdminControll");
               }
             } else {

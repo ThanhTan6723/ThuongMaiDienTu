@@ -176,7 +176,7 @@
                                                 <th>Source IP</th>
                                                 <th>User Agent</th>
                                                 <th>Affected Table</th>
-                                                <th>Action</th>
+<%--                                                <th>Action</th>--%>
                                             </tr>
                                             </thead>
                                             <tbody id="order-table-body">
@@ -210,7 +210,7 @@
                                                 <th>Source IP</th>
                                                 <th>User Agent</th>
                                                 <th>Affected Table</th>
-                                                <th>Action</th>
+<%--                                                <th>Action</th>--%>
                                             </tr>
                                             </thead>
                                             <tbody id="order-table-body">
@@ -247,7 +247,7 @@
                                                 <th>Affected Table</th>
                                                 <th>Before Data</th>
                                                 <th>After Data</th>
-                                                <th>Action</th>
+<%--                                                <th>Action</th>--%>
                                             </tr>
                                             </thead>
                                             <tbody id="order-table-body">

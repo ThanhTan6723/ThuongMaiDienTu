@@ -89,7 +89,7 @@ public class SignupControll extends HttpServlet {
             account.setEmail(email);
             account.setTelephone(phoneNumber);
             Role role = new Role();
-            role.setId(0);
+            role.setId(1);
             account.setRole(role);
             AccountDAO.insertAccount(account);
             response.sendRedirect(request.getContextPath() + "/LoginControll");

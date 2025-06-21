@@ -70,7 +70,7 @@
                                 </ul>
                                 <div class="dropdown-content">
                                     <c:set var="role" value="${sessionScope.account.role}"></c:set>
-                                    <c:if test="${role.id == 1 or role.id==2 or role.id == 3 or role.id == 4 or role.id ==5}">
+                                    <c:if test="${role.id == 2 or role.id==3 or role.id == 4 or role.id == 5}">
                                         <a href="./IndexAdminControll">
                                             <b>Quản lý</b></a>
                                     </c:if>

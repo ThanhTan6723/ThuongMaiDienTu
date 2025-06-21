@@ -84,6 +84,31 @@ public class OrderDAO {
         return listOrders;
     }
 
+    public static Order getOrderByVn_TxnRef(Long vn_TxnRef) {
+        Order order = null;
+
+        try {
+            String sql = "SELECT * FROM Orders where vn_TnxRef=? ";
+            Connection connection = JDBCUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, vn_TxnRef); // Assuming you want only shipped orders
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+               order = new Order(rs.getInt(1), rs.getString(2), rs.getString(3), AccountDAO.getAccountById(rs.getInt(4)), rs.getString(5), rs.getString(6),
+                        rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10), rs.getString(11));
+            }
+
+            JDBCUtil.closeConnection(connection);
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle or log the exception properly
+        }
+
+        return order;
+    }
+
     public static List<OrderDetail> getOrderDetailByBid(int orderId) {
         List<OrderDetail> list = new ArrayList<>();
         String query = "SELECT od.id, od.quantity, od.product_price, od.priceWithQuantity " +
@@ -264,7 +289,7 @@ public class OrderDAO {
 
     public static void insertOrder(Order order) {
 //		List<Product> list = new ArrayList<>();
-        String sql = "INSERT INTO Orders(booking_date,account_id,consignee_name, consignee_phone,ship, discountValue, totalMoney, address,orderNotes,OrderStatus,payment_id) VALUES (?,?,?,?, ?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO Orders(booking_date,account_id,consignee_name, consignee_phone,ship, discountValue, totalMoney, address,orderNotes,OrderStatus,payment_id,vn_TnxRef) VALUES (?,?,?,?, ?,?,?,?,?,?,?,?) ";
         try {
             Connection connection = JDBCUtil.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -279,6 +304,11 @@ public class OrderDAO {
             ps.setString(9, order.getOrderNotes());
             ps.setString(10, order.getOrderStatus());
             ps.setInt(11, order.getPayment().getId());
+            if(order.getVnp_TxnRef()!=null) {
+                ps.setLong(12, order.getVnp_TxnRef());
+            }else {
+                ps.setNull(12, Types.NULL);
+            }
             ps.executeUpdate();
             System.out.println("insert order success");
             JDBCUtil.closeConnection(connection);
