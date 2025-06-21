@@ -54,7 +54,7 @@ public class LoginFacebookControll extends HttpServlet {
                 String password = Encode.toSHA1("login-facebook/" + acc.getId());
                 account.setPassword(password);
                 Role role = new Role();
-                role.setId(0);
+                role.setId(1);
                 account.setRole(role);
                 System.out.println(account);
                 accountDAO.insertAccount(account);

@@ -1,5 +1,7 @@
 package model;
 
+import dao.client.OrderDAO;
+
 import java.util.List;
 
 public class Order {
@@ -16,9 +18,27 @@ public class Order {
     private String orderNotes;
     private String orderStatus;
     private Payment payment;
+    private Long vnp_TxnRef;
 
     public Order() {
         super();
+    }
+
+    public Order(int id, String bookingDate, String diliveryDate, Account account, String consigneeName, String consigneePhone, double ship, double discountValue, double totalMoney, String address, String orderNotes, String orderStatus, Payment payment, Long vnp_TxnRef) {
+        this.id = id;
+        this.bookingDate = bookingDate;
+        this.diliveryDate = diliveryDate;
+        this.account = account;
+        this.consigneeName = consigneeName;
+        this.consigneePhone = consigneePhone;
+        this.ship = ship;
+        this.discountValue = discountValue;
+        this.totalMoney = totalMoney;
+        this.address = address;
+        this.orderNotes = orderNotes;
+        this.orderStatus = orderStatus;
+        this.payment = payment;
+        this.vnp_TxnRef = vnp_TxnRef;
     }
 
     public Order(int id, String bookingDate, Account account, String consigneeName, String consigneePhone, double ship, double totalMoney, String address, String orderNotes, String orderStatus) {
@@ -184,6 +204,14 @@ public class Order {
         this.payment = payment;
     }
 
+    public Long getVnp_TxnRef() {
+        return vnp_TxnRef;
+    }
+
+    public void setVnp_TxnRef(Long vnp_TxnRef) {
+        this.vnp_TxnRef = vnp_TxnRef;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -200,6 +228,7 @@ public class Order {
                 ", orderNotes='" + orderNotes + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", payment=" + payment +
+                ", vnp_TxnRef=" + vnp_TxnRef +
                 '}';
     }
 }

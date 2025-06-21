@@ -456,18 +456,18 @@
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large" src="${detail.image}" alt="">
                         </div>
-                        <div class="product__details__pic__slider__nav">
-                            <div class="owl-prev"><i class="fa fa-angle-left"></i></div>
-                            <div class="product__details__pic__slider owl-carousel">
-                                <c:forEach var="o" items="${listImageProduct}">
-                                    <div class="product__details__pic__slider__item">
-                                        <img data-imgbigurl="img/product/details/product-details-3.jpg" src="${o.url}"
-                                             alt="">
-                                    </div>
-                                </c:forEach>
-                            </div>
-                            <div class="owl-next"><i class="fa fa-angle-right"></i></div>
-                        </div>
+<%--                        <div class="product__details__pic__slider__nav">--%>
+<%--                            <div class="owl-prev"><i class="fa fa-angle-left"></i></div>--%>
+<%--                            <div class="product__details__pic__slider owl-carousel">--%>
+<%--                                <c:forEach var="o" items="${listImageProduct}">--%>
+<%--                                    <div class="product__details__pic__slider__item">--%>
+<%--                                        <img data-imgbigurl="img/product/details/product-details-3.jpg" src="${o.url}"--%>
+<%--                                             alt="">--%>
+<%--                                    </div>--%>
+<%--                                </c:forEach>--%>
+<%--                            </div>--%>
+<%--                            <div class="owl-next"><i class="fa fa-angle-right"></i></div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -486,7 +486,7 @@
                         <div class="product__details__price">
 
                             <fmt:formatNumber value="${detail.price}" pattern="#,###.### ₫" />
-                            / ${detail.weight}kg
+
                         </div>
                         <b>Phân loại: </b> ${nameCategory}<br>
                         <b>Kho: </b>
