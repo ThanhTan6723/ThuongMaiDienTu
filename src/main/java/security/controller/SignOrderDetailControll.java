@@ -26,14 +26,13 @@ public class SignOrderDetailControll extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         // Lấy orderId từ request
-        String orderIdParam = (String) session.getAttribute("orderId");
-        if (orderIdParam == null || orderIdParam.trim().isEmpty()) {
+        int orderIdParam = (int) session.getAttribute("orderId");
+        if (orderIdParam == 0) {
             sendErrorResponse(response, "orderId không hợp lệ.");
             return;
         }
 
-        int orderId = Integer.parseInt(orderIdParam);
-        System.out.println(orderId);
+        System.out.println(orderIdParam);
         if (account == null) {
             response.sendRedirect(request.getContextPath() + "/LoginControll");
             return;
@@ -44,7 +43,7 @@ public class SignOrderDetailControll extends HttpServlet {
             String formattedTime;
             if (signData != null) {
                 formattedTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                res = VerifyDAO.insertOrderSignature(orderId, account.getId(), signData, formattedTime);
+                res = VerifyDAO.insertOrderSignature(orderIdParam, account.getId(), signData, formattedTime);
                 System.out.println(res);
                 if (res != 0) {
                     // Sau khi lưu thành công, chuyển hướng tới CheckOutSuccessControll

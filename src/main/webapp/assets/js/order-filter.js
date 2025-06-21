@@ -64,19 +64,22 @@ function loadOrders(status) {
                                             <img src="/assets/img/pen.png" alt="Notification Image" class="notification-image" style="display: ${verifyStatus.includes('chỉnh sửa') ? 'inline' : 'none'}">
                                             <!-- Hiển thị trạng thái xác thực với màu sắc tương ứng -->
                                             <span class="data" style="color: ${
-                                                verifyStatus.includes('Đã xác thực') ? '#3b99fc' :
-                                                    verifyStatus.includes('chưa xác thực') ? 'orange' :
-                                                        verifyStatus.includes('chỉnh sửa') ? 'red' : 'black'
-                                            };">
+                            verifyStatus.includes('Đã xác thực') ? '#3b99fc' :
+                                verifyStatus.includes('chưa xác thực') ? 'orange' :
+                                    verifyStatus.includes('chỉnh sửa') ? 'red' : 'black'
+                        };">
                                                 ${verifyStatus}
                                             </span>
-                                        </div>                                   
+                                        </div>   
+                                
                                         </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <div class="order-info">Họ và tên người nhận: <span id="nameReceive" class="data">${orderDetail.order.consigneeName}</span></div>
                                         <div class="order-info">Số điện thoại: <span class="data">${orderDetail.order.consigneePhone}</span></div>
+                                        <div class="order-info">Phương thức thanh toán: <span class="data">${orderDetail.order.payment.methodName}</span></div>
+
                                     </div>
                                 </div>
                             </div>

@@ -67,6 +67,7 @@ public class OrderPlaceControl extends HttpServlet {
 //        }
 //
 //        request.setAttribute("verify", verifies);
+        System.out.println(orderDetails);
         request.setAttribute("listProductOrder", orderDetails);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client/order-placed.jsp");

@@ -47,42 +47,79 @@ public class VerifyDAO {
     }
 
     public static String getOrderData(int orderId) throws Exception {
-        String query = "SELECT id, booking_date, delivery_date, account_id, consignee_name, " +
+        String orderQuery = "SELECT id, booking_date, delivery_date, account_id, consignee_name, " +
                 "consignee_phone, ship, discountValue, totalMoney, address, orderNotes, " +
-                "payment_id " +
+                "payment_id, vn_TnxRef " +
                 "FROM Orders WHERE id = ?";
 
-        try (Connection connection = dao.client.JDBCUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            // Thiết lập giá trị cho tham số `orderId`
-            statement.setInt(1, orderId);
+        String detailQuery = "SELECT id, order_id, product_id, product_price, quantity, priceWithQuantity " +
+                "FROM OrderDetails WHERE order_id = ?";
 
-            // Thực hiện truy vấn
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    // Ghép dữ liệu đơn hàng thành chuỗi JSON-like hoặc chuỗi tùy chỉnh
-                    StringBuilder orderData = new StringBuilder();
+        try (Connection connection = dao.client.JDBCUtil.getConnection();
+             PreparedStatement orderStmt = connection.prepareStatement(orderQuery);
+             PreparedStatement detailStmt = connection.prepareStatement(detailQuery)) {
+
+            // Lấy thông tin đơn hàng
+            orderStmt.setInt(1, orderId);
+            StringBuilder orderData = new StringBuilder();
+
+            try (ResultSet orderRs = orderStmt.executeQuery()) {
+                if (orderRs.next()) {
                     orderData.append("{")
-                            .append("\"id\": ").append(resultSet.getInt("id")).append(", ")
-                            .append("\"booking_date\": \"").append(resultSet.getTimestamp("booking_date")).append("\", ")
-                            .append("\"delivery_date\": \"").append(resultSet.getTimestamp("delivery_date")).append("\", ")
-                            .append("\"account_id\": ").append(resultSet.getInt("account_id")).append(", ")
-                            .append("\"consignee_name\": \"").append(resultSet.getString("consignee_name")).append("\", ")
-                            .append("\"consignee_phone\": \"").append(resultSet.getString("consignee_phone")).append("\", ")
-                            .append("\"ship\": ").append(resultSet.getBigDecimal("ship")).append(", ")
-                            .append("\"discountValue\": ").append(resultSet.getBigDecimal("discountValue")).append(", ")
-                            .append("\"totalMoney\": ").append(resultSet.getBigDecimal("totalMoney")).append(", ")
-                            .append("\"address\": \"").append(resultSet.getString("address")).append("\", ")
-                            .append("\"orderNotes\": \"").append(resultSet.getString("orderNotes")).append("\", ")
-                            .append("\"payment_id\": ").append(resultSet.getInt("payment_id"))
-                            .append("}");
+                            .append("\"id\": ").append(orderRs.getInt("id")).append(", ")
+                            .append("\"booking_date\": \"").append(orderRs.getTimestamp("booking_date")).append("\", ")
+                            .append("\"delivery_date\": \"").append(orderRs.getTimestamp("delivery_date")).append("\", ")
+                            .append("\"account_id\": ").append(orderRs.getInt("account_id")).append(", ")
+                            .append("\"consignee_name\": \"").append(escapeJson(orderRs.getString("consignee_name"))).append("\", ")
+                            .append("\"consignee_phone\": \"").append(escapeJson(orderRs.getString("consignee_phone"))).append("\", ")
+                            .append("\"ship\": ").append(orderRs.getBigDecimal("ship")).append(", ")
+                            .append("\"discountValue\": ").append(orderRs.getBigDecimal("discountValue")).append(", ")
+                            .append("\"totalMoney\": ").append(orderRs.getBigDecimal("totalMoney")).append(", ")
+                            .append("\"address\": \"").append(escapeJson(orderRs.getString("address"))).append("\", ")
+                            .append("\"orderNotes\": \"").append(escapeJson(orderRs.getString("orderNotes"))).append("\", ")
+                            .append("\"payment_id\": ").append(orderRs.getInt("payment_id")).append(", ")
+                            .append("\"vn_TnxRef\": ").append(orderRs.getLong("vn_TnxRef")).append(", ")
+                            .append("\"orderDetails\": [");
+
+                    // Lấy thông tin chi tiết đơn hàng
+                    detailStmt.setInt(1, orderId);
+                    try (ResultSet detailRs = detailStmt.executeQuery()) {
+                        boolean firstDetail = true;
+                        while (detailRs.next()) {
+                            if (!firstDetail) {
+                                orderData.append(", ");
+                            }
+                            orderData.append("{")
+                                    .append("\"id\": ").append(detailRs.getInt("id")).append(", ")
+                                    .append("\"order_id\": ").append(detailRs.getInt("order_id")).append(", ")
+                                    .append("\"product_id\": ").append(detailRs.getInt("product_id")).append(", ")
+                                    .append("\"product_price\": ").append(detailRs.getBigDecimal("product_price")).append(", ")
+                                    .append("\"quantity\": ").append(detailRs.getInt("quantity")).append(", ")
+                                    .append("\"priceWithQuantity\": ").append(detailRs.getBigDecimal("priceWithQuantity"))
+                                    .append("}");
+                            firstDetail = false;
+                        }
+                    }
+
+                    orderData.append("]}");
                     return orderData.toString();
                 } else {
-                    // Không tìm thấy đơn hàng
                     throw new Exception("Order not found for id: " + orderId);
                 }
             }
         }
+    }
+
+    // Hàm phụ để escape chuỗi JSON
+    private static String escapeJson(String str) {
+        if (str == null) {
+            return "";
+        }
+        return str.replace("\"", "\\\"")
+                .replace("\\", "\\\\")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
     }
 
     public static String getSignedData(int orderId) throws Exception {
@@ -262,11 +299,12 @@ public class VerifyDAO {
 
 
     public static void main(String[] args) throws Exception {
-   //     System.out.println(VerifyDAO.getOrderData(4));
+//        System.out.println(VerifyDAO.getOrderData(4));
 //        System.out.println(VerifyDAO.getSignedData(1));
 //        System.out.println(VerifyDAO.getPublicKey(1));
  //       System.out.println(VerifyDAO.insertHashOrder(2, 1, "hashData", "2024-12-19"));
   //      updateOrderStatus(1);
-        System.out.println(isOrderChanged(1));
+//        System.out.println(isOrderChanged(1));
+        System.out.println(VerifyDAO.verifyOrder(10));
     }
 }

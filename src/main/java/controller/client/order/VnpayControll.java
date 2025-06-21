@@ -73,6 +73,10 @@ public class VnpayControll extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/CheckOutSuccessControll");
             }else{
+                if (account != null) {
+                    Cart.deleteCartToCookies(request, response, account.getId());
+                    session.setAttribute("size", 0);
+                }
                 request.setAttribute("paymentError", "Thanh toán không thành công hoặc bị huỷ!");
                 request.getRequestDispatcher("/WEB-INF/client/payment.jsp").forward(request, response);
             }
