@@ -373,18 +373,13 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>Những loại rau quả</h4>
+                        <h4>Những sản phẩm len</h4>
                         <ul>
-                            <li><a href="#">Rau xanh lá</a></li>
-                            <li><a href="#">Quả dâu</a></li>
-                            <li><a href="#">Quả lựu</a></li>
-                            <li><a href="#">Quả lê</a></li>
-                            <li><a href="#">Quả táo</a></li>
-                            <li><a href="#">Cà chua</a></li>
-                            <li><a href="#">Cà rốt</a></li>
-                            <li><a href="#">Bí đỏ</a></li>
-                            <li><a href="#">Bơ</a></li>
-                            <li><a href="#">Cải bắp cải</a></li>
+                            <li><a href="#">Túi len</a></li>
+                            <li><a href="#">Hoa len</a></li>
+                            <li><a href="#">Móc khóa</a></li>
+                            <li><a href="#">Lót ly</a></li>
+
                         </ul>
                     </div>
                     <div class="sidebar__item sidebar__item__color--option">

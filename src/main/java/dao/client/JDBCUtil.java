@@ -7,7 +7,7 @@ public class JDBCUtil {
     private static final int port = 3306;
     private static final String databaseName = "handmades";
     private static final String username = "root";
-    private static final String password = "6723";
+    private static final String password = "";
 
 
     public static Connection getConnection() {

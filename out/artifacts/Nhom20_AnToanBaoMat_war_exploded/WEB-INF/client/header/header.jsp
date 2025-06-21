@@ -118,10 +118,10 @@
                         <!-- Dropdown Menu for Product Categories -->
                         <ul class="header__menu__dropdown">
                             <li class=""><a href="./ShowProductControl?cid=0">Tất cả</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=1">Rau lá</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=2">Củ quả</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=3">Trái cây</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=4">Nấm</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=1">Móc khoá len</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=2">Túi len và phụ kiện</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=3">Thú len, búp bê handmade</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=4">Hoa len và đồ trang trí</a></li>
 
                         </ul>
                     </li>
@@ -164,20 +164,14 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Những loại rau quả</span>
+                        <span>Những sản phẩm len</span>
                     </div>
                     <ul>
-                        <li><a href="#">Rau xanh lá</a></li>
-                        <li><a href="#">Quả dâu</a></li>
-                        <li><a href="#">Quả lựu</a></li>
-                        <li><a href="#">Quả lê</a></li>
-                        <li><a href="#">Quả táo</a></li>
-                        <li><a href="#">Cà chua</a></li>
-                        <li><a href="#">Cà rốt</a></li>
-                        <li><a href="#">Bí đỏ</a></li>
-                        <li><a href="#">Bơ</a></li>
-                        <li><a href="#">Dưa chuột</a></li>
-                        <li><a href="#">Cải bắp cải</a></li>
+                        <li><a href="#">Túi Len</a></li>
+                        <li><a href="#">Hoa Len</a></li>
+                        <li><a href="#">Móc khóa</a></li>
+                        <li><a href="#">Lót ly</a></li>
+
                     </ul>
                 </div>
             </div>
