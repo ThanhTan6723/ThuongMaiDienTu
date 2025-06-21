@@ -85,6 +85,7 @@ public class VNPayPaymentServlet extends HttpServlet {
         order.setVnp_TxnRef(Long.parseLong(vnp_TxnRef));
         order.setOrderStatus("Đơn hàng đang chờ xác nhận");
         order.setPayment(OrderDAO.getPayment(3));
+
         OrderDAO.insertOrder(order);
 
         resp.sendRedirect(paymentUrl);

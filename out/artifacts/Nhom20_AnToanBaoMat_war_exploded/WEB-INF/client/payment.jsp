@@ -473,7 +473,7 @@
             } else if (paymentMethod === 'qr') {
                 const modal = document.getElementById('confirmationModal');
                 modal.style.display = 'flex';
-            } else if (paymentMethod === 'cod') {
+            }else if (paymentMethod === 'cod') {
                 form.action = '/PaymentInsertControll';
                 form.submit();
             }

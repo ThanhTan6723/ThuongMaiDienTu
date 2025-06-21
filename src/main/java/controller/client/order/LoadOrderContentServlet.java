@@ -30,31 +30,43 @@ public class LoadOrderContentServlet extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         if (account == null) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Bạn chưa đăng nhập.");
+            System.err.println("ERROR: Chưa đăng nhập.");
             return;
         }
 
         String orderStatus = request.getParameter("status");
         if (orderStatus == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thiếu trạng thái đơn hàng.");
+            System.err.println("ERROR: Thiếu trạng thái đơn hàng.");
             return;
         }
 
         List<OrderDetail> orderDetails;
-        if ("all".equals(orderStatus)) {
-            orderDetails = OrderDAO.getListOrder(account.getId());
-        } else {
-            orderDetails = OrderDAO.getOrderDetailsByStatus(orderStatus);
+        try {
+            if ("all".equals(orderStatus)) {
+                orderDetails = OrderDAO.getListOrder(account.getId());
+            } else {
+                orderDetails = OrderDAO.getOrderDetailsByStatus(orderStatus);
+            }
+        } catch (Exception ex) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi truy vấn danh sách đơn hàng: " + ex.getMessage());
+            ex.printStackTrace();
+            return;
         }
 
         if (orderDetails == null || orderDetails.isEmpty()) {
             response.getWriter().write("[]");
+            System.out.println("INFO: Không có đơn hàng nào phù hợp.");
             return;
         }
 
         List<OrderResponse> responseList = new ArrayList<>();
 
         for (OrderDetail orderDetail : orderDetails) {
-            if (orderDetail == null || orderDetail.getOrder() == null) continue;
+            if (orderDetail == null || orderDetail.getOrder() == null) {
+                System.err.println("WARNING: Đơn hàng null hoặc dữ liệu không hợp lệ.");
+                continue;
+            }
 
             int orderId = orderDetail.getOrder().getId();
             String verifyStatus = null;
@@ -68,19 +80,24 @@ public class LoadOrderContentServlet extends HttpServlet {
                 } else {
                     if (VerifyDAO.isOrderChanged(orderId)) {
                         verifyStatus = "Đơn hàng bị chỉnh sửa";
+                        System.err.println("INFO: Đơn hàng " + orderId + " bị chỉnh sửa (isOrderChanged=true)");
                     } else {
                         if (!storedHash.equals(currentHash)) {
                             verifyStatus = "Đơn hàng bị chỉnh sửa";
-                            return;
+                            System.err.println("ERROR: Hash không khớp cho orderId=" + orderId
+                                    + ". storedHash=" + storedHash + ", currentHash=" + currentHash);
+                            // Không return ở đây, tiếp tục xử lý các đơn khác
                         } else {
                             if (!VerifyDAO.isOrderSigned(orderId)) {
                                 verifyStatus = "Chưa xác thực";
+                                System.out.println("INFO: Đơn hàng " + orderId + " chưa xác thực (chưa có chữ ký).");
                             } else {
                                 boolean isVerified = VerifyDAO.verifyOrder(orderId);
                                 if (isVerified) {
                                     verifyStatus = "Đã xác thực";
                                 } else {
                                     verifyStatus = "Không chính chủ";
+                                    System.err.println("ERROR: Đơn hàng " + orderId + " không chính chủ (verifyOrder=false)");
                                 }
                             }
                         }
@@ -88,6 +105,8 @@ public class LoadOrderContentServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 verifyStatus = "Lỗi khi xử lý đơn hàng";
+                System.err.println("ERROR: Lỗi khi xử lý đơn hàng " + orderId + ": " + e.getMessage());
+                e.printStackTrace();
             }
 
             // Thêm thông tin vào danh sách phản hồi
@@ -95,13 +114,12 @@ public class LoadOrderContentServlet extends HttpServlet {
         }
 
         String json = new Gson().toJson(responseList);
+        System.out.println("KẾT QUẢ JSON: " + json);
         response.getWriter().write(json);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO Auto-generated method stub
         doGet(request, response);
     }
-
 }

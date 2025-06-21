@@ -156,7 +156,7 @@ public class OrderDAO {
         try {
             Connection connection = JDBCUtil.getConnection();
             String sql = "\r\n"
-                    + "SELECT O.id , P.id ,O.orderStatus,O.address,O.account_id,O.consignee_name,O.consignee_phone,O.ship,O.discountValue, P.name, P.price,OD.quantity,OD.priceWithQuantity , P.image, P.description, P.category_Id,O.totalMoney,O.booking_date,O.delivery_date\r\n"
+                    + "SELECT O.id , P.id ,O.orderStatus,O.address,O.account_id,O.consignee_name,O.consignee_phone,O.ship,O.discountValue, O.payment_id, P.name, P.price,OD.quantity,OD.priceWithQuantity , P.image, P.description, P.category_Id,O.totalMoney,O.booking_date,O.delivery_date\r\n"
                     + "FROM Orders O\r\n" + "INNER JOIN OrderDetails OD ON O.id = OD.order_id\r\n"
                     + "INNER JOIN Products P ON OD.product_id = P.id\r\n"
                     + "INNER JOIN Category C ON P.category_id = C.id\r\n" + "WHERE O.orderStatus = ?\r\n"
@@ -177,6 +177,7 @@ public class OrderDAO {
 
                 order.setTotalMoney(rs.getFloat("totalMoney"));
                 order.setOrderStatus(rs.getString("orderStatus"));
+                order.setPayment(OrderDAO.getPayment(rs.getInt("payment_id")));
                 order.setAddress(rs.getString("address"));
                 order.setAccount(AccountDAO.getAccountById(rs.getInt("account_id")));
 
@@ -492,7 +493,7 @@ public class OrderDAO {
         try {
             Connection connection = JDBCUtil.getConnection();
             String sql = "\r\n"
-                    + "SELECT O.id , P.id ,O.orderStatus,O.address,O.account_id,O.consignee_name,O.consignee_phone,O.ship,O.discountValue, P.name, P.price,OD.quantity,OD.priceWithQuantity , P.image, P.description, P.category_Id,O.totalMoney,O.booking_date,O.delivery_date\r\n"
+                    + "SELECT O.id , P.id ,O.orderStatus,O.address,O.account_id,O.consignee_name,O.consignee_phone,O.ship,O.discountValue,O.payment_id, P.name, P.price,OD.quantity,OD.priceWithQuantity , P.image, P.description, P.category_Id,O.totalMoney,O.booking_date,O.delivery_date\r\n"
                     + "FROM Orders O\r\n" + "INNER JOIN OrderDetails OD ON O.id = OD.order_id\r\n"
                     + "INNER JOIN Products P ON OD.product_id = P.id\r\n"
                     + "INNER JOIN Category C ON P.category_id = C.id\r\n" + "WHERE O.account_id = ?\r\n"
@@ -513,6 +514,7 @@ public class OrderDAO {
 
                 order.setTotalMoney(rs.getFloat("totalMoney"));
                 order.setOrderStatus(rs.getString("orderStatus"));
+                order.setPayment(OrderDAO.getPayment(rs.getInt("payment_id")));
                 order.setAddress(rs.getString("address"));
                 order.setAccount(AccountDAO.getAccountById(rs.getInt("account_id")));
 

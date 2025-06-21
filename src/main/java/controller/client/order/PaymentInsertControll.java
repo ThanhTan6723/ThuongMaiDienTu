@@ -29,8 +29,6 @@ public class PaymentInsertControll extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         Order order = (Order) session.getAttribute("bill");
         List<OrderDetail> orderDetail = (List<OrderDetail>) session.getAttribute("billDetail");
-//        String data = order.toString() + orderDetail.toString();
-//        System.out.println("Data: " + data);
 
         if (order != null && orderDetail != null) {
             OrderDAO.insertOrder(order);
@@ -39,8 +37,10 @@ public class PaymentInsertControll extends HttpServlet {
                 od.setOrder(order);
                 OrderDAO.insertOrderdetail(od);
             }
-            Cart.deleteCartToCookies(request, response, account.getId());
-
+            if (account != null) {
+                Cart.deleteCartToCookies(request, response, account.getId());
+                session.setAttribute("size", 0);
+            }
             //hash order
             String data =null;
             String hashData = null;
