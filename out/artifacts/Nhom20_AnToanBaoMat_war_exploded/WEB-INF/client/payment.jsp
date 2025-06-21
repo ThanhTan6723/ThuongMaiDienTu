@@ -402,6 +402,10 @@
                                         <label for="credit">Vnpay</label>
                                     </div>
                                     <div class="radio-item">
+                                        <input type="radio" id="momo" name="paymentMethod" value="momo">
+                                        <label for="momo">Momo</label>
+                                    </div>
+                                    <div class="radio-item">
                                         <input type="radio" id="cod" name="paymentMethod" value="cod">
                                         <label for="cod">Thanh toán khi nhận hàng</label>
                                     </div>
@@ -470,7 +474,11 @@
             if (paymentMethod === 'vnpay') {
                 form.action = '/VNPayPaymentServlet';
                 form.submit();
-            } else if (paymentMethod === 'qr') {
+            }else if (paymentMethod === 'momo') {
+                form.action = '/MoMoPaymentServlet';  // đây là Servlet xử lý thanh toán MoMo
+                form.submit();
+            }
+            else if (paymentMethod === 'qr') {
                 const modal = document.getElementById('confirmationModal');
                 modal.style.display = 'flex';
             } else if (paymentMethod === 'cod') {
@@ -488,9 +496,10 @@
         const qr = document.getElementById('qr');
         const vnpay = document.getElementById('credit');
         const cod = document.getElementById('cod');
+        const momo = document.getElementById('momo');
         const paymentError = document.getElementById('payment-error');
         let valid = true;
-        if (!qr.checked && !vnpay.checked && !cod.checked) {
+        if (!qr.checked && !vnpay.checked && !cod.checked && !momo.checked ) {
             paymentError.textContent = 'Vui lòng chọn một hình thức thanh toán';
             valid = false;
         } else {
