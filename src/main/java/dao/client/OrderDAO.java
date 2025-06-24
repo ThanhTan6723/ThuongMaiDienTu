@@ -150,7 +150,7 @@ public class OrderDAO {
         return list;
     }
 
-    public static List<OrderDetail> getOrderDetailsByStatus(String status) {
+    public static List<OrderDetail> getOrderDetailsByStatus(int accountId, String status) {
         List<OrderDetail> listOrderdetails = new ArrayList<>();
 
         try {
@@ -159,10 +159,11 @@ public class OrderDAO {
                     + "SELECT O.id , P.id ,O.orderStatus,O.address,O.account_id,O.consignee_name,O.consignee_phone,O.ship,O.discountValue, O.payment_id, P.name, P.price,OD.quantity,OD.priceWithQuantity , P.image, P.description, P.category_Id,O.totalMoney,O.booking_date,O.delivery_date\r\n"
                     + "FROM Orders O\r\n" + "INNER JOIN OrderDetails OD ON O.id = OD.order_id\r\n"
                     + "INNER JOIN Products P ON OD.product_id = P.id\r\n"
-                    + "INNER JOIN Category C ON P.category_id = C.id\r\n" + "WHERE O.orderStatus = ?\r\n"
+                    + "INNER JOIN Category C ON P.category_id = C.id\r\n" + "WHERE O.account_id = ? and O.orderStatus = ?\r\n"
                     + "ORDER BY O.id DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, status);
+            ps.setInt(1, accountId);
+            ps.setString(2, status);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -581,6 +582,26 @@ public class OrderDAO {
 
     }
 
+    public static double calculateTotalPrice(int orderId) {
+        double totalPrice = 0.0;
+        String query = "SELECT SUM(priceWithQuantity) AS totalPrice FROM OrderDetails WHERE order_id = ?";
+
+        try (Connection connection = JDBCUtil.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalPrice = rs.getDouble("totalPrice");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error calculating total price for Order ID " + orderId + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return totalPrice;
+    }
+
     public static int deleteOrder(int id) {
         int re = 0;
 
@@ -602,9 +623,10 @@ public class OrderDAO {
 
     public static void main(String[] args) {
 //        System.out.println(getCategory(1));
-        System.out.println(getOrderDetailByBid(1));
+//        System.out.println(getOrderDetailByBid(1));
 //        System.out.println(getQuantityWithOderId(3));
 //        System.out.println(getPayment(3));
-        updateDeliveryDate(17);
+//        updateDeliveryDate(17);
+        System.out.println((OrderDAO.getListOrder(10)).size());
     }
 }

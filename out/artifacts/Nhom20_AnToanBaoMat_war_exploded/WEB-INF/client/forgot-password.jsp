@@ -28,7 +28,7 @@
 <div class="container forms">
     <div class="form login">
         <div class="form-content">
-            <header>Forgot password</header>
+            <header>Quên mật khẩu</header>
             <div class="form-link">
                 <span style="font-size: 18px; color: #3472ac;"><b>Vui lòng nhập email của bạn để lấy lại mật khẩu</b></span>
             </div>

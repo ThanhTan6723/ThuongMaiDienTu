@@ -46,7 +46,7 @@ public class LoadOrderContentServlet extends HttpServlet {
             if ("all".equals(orderStatus)) {
                 orderDetails = OrderDAO.getListOrder(account.getId());
             } else {
-                orderDetails = OrderDAO.getOrderDetailsByStatus(orderStatus);
+                orderDetails = OrderDAO.getOrderDetailsByStatus(account.getId(),orderStatus);
             }
         } catch (Exception ex) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi truy vấn danh sách đơn hàng: " + ex.getMessage());

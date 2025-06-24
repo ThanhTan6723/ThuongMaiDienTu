@@ -15,6 +15,7 @@
     <!-- Css Styles -->
     <jsp:include page="./link/link.jsp"></jsp:include>
     <style>
+        /* Existing styles remain unchanged */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -32,8 +33,6 @@
             margin-top: 15px;
             margin-bottom: 20px;
             margin-right: 20px;
-            /*display: flex;*/
-            /*flex-direction: row;*/
             position: relative;
         }
 
@@ -49,14 +48,13 @@
         .radio-item {
             margin-left: 10px;
             margin-top: 10px;
-
         }
 
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Khoảng cách giữa các nút radio */
-            margin-top: 10px; /* Khoảng cách phía trên */
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .radio-item {
@@ -87,7 +85,6 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
             justify-content: center;
             align-items: center;
@@ -150,6 +147,13 @@
 
         .error-message {
             color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        .error-message.show {
+            display: block; /* Show when error occurs */
         }
 
         .order-info {
@@ -163,7 +167,6 @@
             font-weight: normal;
         }
 
-        /* Modal overlay */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -171,21 +174,20 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            display: none; /* Ẩn mặc định */
+            display: none;
             overflow: hidden;
             justify-content: center;
-            align-items: flex-start; /* Căn modal về phía trên */
+            align-items: flex-start;
             z-index: 1000;
             margin: 0;
             padding: 0;
         }
 
-        /* Modal content */
         .modalV-content {
             background: white;
             border-radius: 18px;
             width: 600px;
-            margin-top: 220px; /* Cách phía trên 100px */
+            margin-top: 220px;
             padding: 0;
             text-align: center;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -202,16 +204,16 @@
         }
 
         .modalV-body {
-            margin: 20px 30px; /* Giảm khoảng cách để không tạo rìa lớn */
+            margin: 20px 30px;
             font-size: 16px;
-            line-height: 1.5; /* Tăng khoảng cách giữa các dòng để dễ đọc hơn */
+            line-height: 1.5;
         }
 
         .modalV-footer {
             display: flex;
             justify-content: flex-end;
-            gap: 10px; /* Khoảng cách giữa các nút */
-            margin: 20px 30px; /* Đồng bộ khoảng cách như body */
+            gap: 10px;
+            margin: 20px 30px;
         }
 
         .modalV-footer button {
@@ -238,7 +240,7 @@
         }
 
         .modalV-footer button.confirm:hover {
-            background: #6fa6d6;
+            background: #5f96c6;
         }
 
         .custom-notification {
@@ -270,6 +272,7 @@
             align-items: center;
             text-align: center;
         }
+
         .notification-content span {
             font-weight: bold;
         }
@@ -278,9 +281,8 @@
             max-width: 100px;
             max-height: 100px;
             margin-bottom: 10px;
-            border-radius: 50%; /* Làm hình ảnh bo tròn nếu cần */
+            border-radius: 50%;
         }
-
     </style>
 </head>
 <body>
@@ -291,48 +293,33 @@
 <section class="shoping-cart spad">
     <div class="container">
         <div class="checkout__form">
-            <h4>Thanh toán</h4>
+            <h4>Xác nhận thanh toán</h4>
             <div class="xBNaac"></div>
-            <form action="${pay}" id="form" method="get" onsubmit="return validate()">
+            <form action="${pay}" id="form" method="get">
                 <div class="row" style="background-color: white; padding: 10px;">
-                    <div class="col-lg-8 col-md-6"
-                         style="max-width: 63.666667%; ">
-                        <div class="row"
-                             style="border-bottom: 1px dashed #e7e7e7;background-color: #fffcf5;height: 130px;border-top-left-radius:12px">
+                    <div class="col-lg-8 col-md-6" style="max-width: 63.666667%;">
+                        <div class="row" style="border-bottom: 1px dashed #e7e7e7; background-color: #fffcf5; height: 130px; border-top-left-radius: 12px;">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <c:set var="order" value="${sessionScope.bill}"></c:set>
-                                    <%--                                    <div class="order-info">Mã đơn hàng: <span class="data">${order.id}</span></div>--%>
-                                    <div class="order-info">Ngày đặt hàng: <span class="data"
-                                                                                 name="bookingDate">${order.bookingDate}</span>
-                                    </div>
-                                    <div class="order-info">Địa chỉ giao hàng: <span class="data"
-                                                                                     name="address">${order.address}</span>
-                                    </div>
+                                    <div class="order-info">Ngày đặt hàng: <span class="data" name="bookingDate">${order.bookingDate}</span></div>
+                                    <div class="order-info">Địa chỉ giao hàng: <span class="data" name="address">${order.address}</span></div>
                                     <c:if test="${not empty order.orderNotes}">
-                                        <div class="order-info">Ghi chú: <span class="data"
-                                                                               name="notes">${order.orderNotes}</span>
-                                        </div>
+                                        <div class="order-info">Ghi chú: <span class="data" name="notes">${order.orderNotes}</span></div>
                                     </c:if>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <div class="order-info">Họ và tên người nhận: <span id="nameReceive" name="rname"
-                                                                                        class="data">${order.consigneeName}</span>
-                                    </div>
-                                    <div class="order-info">Số điện thoại: <span class="data"
-                                                                                 name="rphone">${order.consigneePhone}</span>
-                                    </div>
-                                    <%--                                    <p>Họ và tên người nhận<span>*</span></p>--%>
+                                    <div class="order-info">Họ và tên người nhận: <span id="nameReceive" name="rname" class="data">${order.consigneeName}</span></div>
+                                    <div class="order-info">Số điện thoại: <span class="data" name="rphone">${order.consigneePhone}</span></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="background-color: #fbfbfb;border-radius: 0px 0px 12px 12px">
+                        <div class="row" style="background-color: #fbfbfb; border-radius: 0px 0px 12px 12px;">
                             <div class="col-lg-12">
-                                <div class="checkoutOrder" style="font-family: 'Arial', sans-serif;font-size: 14px">
-                                    <h5 style="text-align: left;margin-top: 15px;margin-bottom: 15px"><b>Danh sách sản
-                                        phẩm đã đặt</b></h5>
+                                <div class="checkoutOrder" style="font-family: 'Arial', sans-serif; font-size: 14px;">
+                                    <h5 style="text-align: left; margin-top: 15px; margin-bottom: 15px;"><b>Danh sách sản phẩm đã đặt</b></h5>
                                     <table>
                                         <thead>
                                         <tr>
@@ -347,17 +334,14 @@
                                             <tr>
                                                 <td class="shoping__cart__item">${orderDetail.product.name}</td>
                                                 <td class="shoping__cart__price">
-                                                    <fmt:formatNumber value="${orderDetail.product.price}"
-                                                                      pattern="#,###.### ₫"/>
+                                                    <fmt:formatNumber value="${orderDetail.product.price}" pattern="#,###.### ₫"/>
                                                 </td>
                                                 <td class="shoping__cart__quantity">${orderDetail.quantity}</td>
                                                 <td class="shoping__cart__total">
-                                                    <fmt:formatNumber value="${orderDetail.price}"
-                                                                      pattern="#,###.### ₫"/>
+                                                    <fmt:formatNumber value="${orderDetail.price}" pattern="#,###.### ₫"/>
                                                 </td>
                                             </tr>
                                         </c:forEach>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -365,33 +349,17 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="checkout__order" style="width: 400px">
-                            <h5 style="text-align: center;margin-bottom: 15px"><b>Thông tin thanh toán</b></h5>
-                            <div class="checkout__order__total">Tổng tiền hàng<span><fmt:formatNumber
-                                    value="${order.totalMoney - order.ship}"
-                                    pattern="#,###.### ₫"/></span></div>
-                            <div class="checkout__order__total">Phí vận chuyển<span id="shipping-fee"><fmt:formatNumber
-                                    value="${order.ship}" pattern="#,###.### ₫"/></span></div>
+                        <div class="checkout__order" style="width: 400px;">
+                            <h5 style="text-align: center; margin-bottom: 15px;"><b>Thông tin thanh toán</b></h5>
+                            <div class="checkout__order__total">Tổng tiền hàng<span><fmt:formatNumber value="${order.totalMoney - order.ship}" pattern="#,###.### ₫"/></span></div>
+                            <div class="checkout__order__total">Phí vận chuyển<span id="shipping-fee"><fmt:formatNumber value="${order.ship}" pattern="#,###.### ₫"/></span></div>
                             <c:if test="${not empty discount}">
-                                <div class="checkout__order__total">Voucher từ shop<span><fmt:formatNumber
-                                        value="${discount}"
-                                        pattern="#,###.### ₫"/></span></div>
+                                <div class="checkout__order__total">Voucher từ shop<span><fmt:formatNumber value="${discount}" pattern="#,###.### ₫"/></span></div>
                             </c:if>
-                            <c:if test="${not empty discount}">
-                                <div class="checkout__order__total">Thành tiền<span id="total"><fmt:formatNumber
-                                        value="1000"
-                                        pattern="#,###.### ₫"/></span>
-                                </div>
-                            </c:if>
-                            <c:if test="${empty discount}">
-                                <div class="checkout__order__total">Thành tiền<span id="total"><fmt:formatNumber
-                                        value="2000"
-                                        pattern="#,###.### ₫"/></span>
-                                </div>
-                            </c:if>
+                            <div class="checkout__order__total">Thành tiền<span id="total"><fmt:formatNumber value="${not empty discount ? order.totalMoney - discount : order.totalMoney}" pattern="#,###.### ₫"/></span></div>
                             <input type="hidden" id="total-weight" name="total-weight" value="${totalWeight}">
-                            <div class="payment" id="payment-method" style="font-size: 16px;display: block"><b>Chọn hình
-                                thức thanh toán</b>
+                            <div class="payment" id="payment-method" style="font-size: 16px;">
+                                <b>Chọn hình thức thanh toán</b>
                                 <div class="radio-group">
                                     <div class="radio-item">
                                         <input type="radio" id="qr" name="paymentMethod" value="qr">
@@ -402,23 +370,25 @@
                                         <label for="credit">Vnpay</label>
                                     </div>
                                     <div class="radio-item">
+                                        <input type="radio" id="momo" name="paymentMethod" value="momo">
+                                        <label for="momo">Momo</label>
+                                    </div>
+                                    <div class="radio-item">
                                         <input type="radio" id="cod" name="paymentMethod" value="cod">
                                         <label for="cod">Thanh toán khi nhận hàng</label>
                                     </div>
                                 </div>
-                                <div class="error-message" id="payment-error"></div>
+                                <div class="error-message" id="payment-error">Vui lòng chọn một hình thức thanh toán</div>
                             </div>
-                            <input style="padding: 10px 110px 10px;border: none;margin-top: 10px" type="button"
-                                   class="primary-btn"
-                                   id="payment-button" value="Thanh toán">
+                            <input style="padding: 10px 110px; border: none; margin-top: 10px;" type="button" class="primary-btn" id="payment-button" value="Thanh toán">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 </section>
+
 <!-- Modal xác thực thanh toán -->
 <div class="modal-overlay" id="confirmationModal">
     <div class="modalV-content">
@@ -428,7 +398,7 @@
         </div>
         <div class="modalV-footer">
             <form action="PaymentInsertControll" method="GET" style="display: inline;">
-            <button class="cancel" id="cancel-payment">Để sau</button>
+                <button type="submit" class="cancel" id="cancel-payment">Để sau</button>
             </form>
             <form action="VerifyOrderControll" method="GET" style="display: inline;">
                 <button type="submit" class="confirm">Bắt đầu</button>
@@ -440,13 +410,10 @@
 <!-- Modal for QR Code Payment -->
 <div id="qrModal">
     <div id="qrModalContent">
-        <img id="QRCODE-Img" src="" alt="QR Code" style="width: 80%;border-radius: 20px">
-        <h4 style="color: white; text-align: center; margin-top: 15px"><b>Mã QR thanh toán tự động</b></h4>
-        <p style="color: white; text-align: center; margin-top: 5px">(Xác nhận tự động - Thường không quá 3')</p>
+        <img id="QRCODE-Img" src="" alt="QR Code" style="width: 80%; border-radius: 20px;">
+        <h4 style="color: white; text-align: center; margin-top: 15px;"><b>Mã QR thanh toán tự động</b></h4>
+        <p style="color: white; text-align: center; margin-top: 5px;">(Xác nhận tự động - Thường không quá 3')</p>
         <div class="qrModal-footer">
-            <%--            <span>Số tiền: <span id="totalPrice"></span></span>--%>
-            <%--            <span>Người thụ hưởng: <span id="receiver"></span>CAO THANH TAN</span>--%>
-            <%--            <span>Nội dung (bắt buộc): <span id="content"></span></span>--%>
             <span>Đang chờ thanh toán <span id="countdown"></span></span>
             <div id="progressBar">
                 <div id="progress"></div>
@@ -454,88 +421,59 @@
         </div>
     </div>
 </div>
-<!-- Checkout Section End -->
+
+<!-- Js Plugins -->
 <script src="../../assets/js/payment.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<!-- Js Plugins -->
 <jsp:include page="./footer/footer.jsp"></jsp:include>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const paymentButton = document.getElementById('payment-button');
         const form = document.getElementById('form');
+        const paymentError = document.getElementById('payment-error');
 
         paymentButton.addEventListener('click', function () {
-            if (!validate()) return;
+            if (!validatePaymentMethod()) {
+                paymentError.classList.add('show');
+                return;
+            }
+            paymentError.classList.remove('show');
+
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            if (paymentMethod === 'vnpay') {
-                form.action = '/VNPayPaymentServlet';
-                form.submit();
-            } else if (paymentMethod === 'qr') {
-                const modal = document.getElementById('confirmationModal');
-                modal.style.display = 'flex';
-            }else if (paymentMethod === 'cod') {
-                form.action = '/PaymentInsertControll';
-                form.submit();
+            switch (paymentMethod) {
+                case 'vnpay':
+                    form.action = '/VNPayPaymentServlet';
+                    form.submit();
+                    break;
+                case 'qr':
+                    document.getElementById('confirmationModal').style.display = 'flex';
+                    break;
+                case 'momo':
+                    form.action = '/MoMoPaymentServlet';
+                    form.submit();
+                    break;
+                case 'cod':
+                    form.action = '/PaymentInsertControll';
+                    form.submit();
+                    break;
+                default:
+                    paymentError.classList.add('show');
             }
         });
 
-        document.getElementById('cancel-payment').addEventListener('click', function () {
-            const modal = document.getElementById('confirmationModal');
-            modal.style.display = 'none';
+        // Clear error message when a payment method is selected
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                paymentError.classList.remove('show');
+            });
         });
     });
-    function validate() {
-        const qr = document.getElementById('qr');
-        const vnpay = document.getElementById('credit');
-        const cod = document.getElementById('cod');
-        const paymentError = document.getElementById('payment-error');
-        let valid = true;
-        if (!qr.checked && !vnpay.checked && !cod.checked) {
-            paymentError.textContent = 'Vui lòng chọn một hình thức thanh toán';
-            valid = false;
-        } else {
-            paymentError.textContent = '';
-        }
-        return valid;
+
+    function validatePaymentMethod() {
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+        return !!paymentMethod; // Returns true if a payment method is selected, false otherwise
     }
-</script>
-<%--<script>--%>
-<%--    document.addEventListener("DOMContentLoaded", function () {--%>
-<%--        const paymentButton = document.getElementById('payment-button');--%>
-<%--        // Xử lý sự kiện khi nhấn Thanh toán--%>
-<%--        paymentButton.addEventListener('click', function () {--%>
-<%--            if (!validate()) {--%>
-<%--                return; // Không mở modal nếu không hợp lệ--%>
-<%--            }--%>
-
-<%--            // Hiển thị modal--%>
-<%--            const modal = document.getElementById('confirmationModal');--%>
-<%--            modal.style.display = 'flex'; // Hiển thị modal--%>
-<%--        });--%>
-
-<%--    });--%>
-
-
-<%--    // Hàm kiểm tra phương thức thanh toán--%>
-<%--    function validate() {--%>
-<%--        const qr = document.getElementById('qr');--%>
-<%--        const cod = document.getElementById('cod');--%>
-<%--        const paymentError = document.getElementById('payment-error');--%>
-<%--        let valid = true;--%>
-
-<%--        // Kiểm tra nếu không chọn phương thức thanh toán--%>
-<%--        if (!qr.checked && !cod.checked) {--%>
-<%--            paymentError.textContent = 'Vui lòng chọn một hình thức thanh toán';--%>
-<%--            valid = false;--%>
-<%--        } else {--%>
-<%--            paymentError.textContent = ''; // Xóa thông báo lỗi nếu đã chọn phương thức thanh toán--%>
-<%--        }--%>
-
-<%--        return valid;--%>
-<%--    }--%>
-
-
-
 </script>
 </body>
 </html>

@@ -110,7 +110,7 @@ public class HashOrderOPControll extends HttpServlet {
             writer.write(privateKey);
         }
 
-        String emailTitle = "[Golden Fields] Private key for your account";
+        String emailTitle = "[Handora] Private key for your account";
         String emailContent = String.format("Kính gửi %s,\n\nVui lòng tải file đính kèm chứa khóa riêng (private key) của bạn để tạo chữ ký điện tử cho đơn hàng. Hãy giữ nó an toàn và không chia sẻ với bất kỳ ai.\n\nTrân trọng.", account.getName());
 
         sendEmailAsync(account.getEmail(), emailTitle, emailContent, tempFile);

@@ -121,7 +121,7 @@
 									<h4 class="card-title">Danh mục bán chạy</h4>
 									<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
 										<div class="text-md-center text-xl-left">
-											<h6 class="mb-1">Noodle</h6>
+											<h6 class="mb-1">Móc khóa</h6>
 											<p class="text-muted mb-0">${map.get("ratio1")}%</p>
 										</div>
 										<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
@@ -130,7 +130,7 @@
 									</div>
 									<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
 										<div class="text-md-center text-xl-left">
-											<h6 class="mb-1">Rice</h6>
+											<h6 class="mb-1">Túi xách</h6>
 											<p class="text-muted mb-0">${map.get("ratio2")}%</p>
 										</div>
 										<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
@@ -139,7 +139,7 @@
 									</div>
 									<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
 										<div class="text-md-center text-xl-left">
-											<h6 class="mb-1">Chicken</h6>
+											<h6 class="mb-1">Hoa</h6>
 											<p class="text-muted mb-0">${map.get("ratio3")}%</p>
 										</div>
 										<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">

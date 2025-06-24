@@ -164,20 +164,14 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Những loại rau quả</span>
+                        <span>Những sản phẩm len</span>
                     </div>
                     <ul>
-                        <li><a href="#">Rau xanh lá</a></li>
-                        <li><a href="#">Quả dâu</a></li>
-                        <li><a href="#">Quả lựu</a></li>
-                        <li><a href="#">Quả lê</a></li>
-                        <li><a href="#">Quả táo</a></li>
-                        <li><a href="#">Cà chua</a></li>
-                        <li><a href="#">Cà rốt</a></li>
-                        <li><a href="#">Bí đỏ</a></li>
-                        <li><a href="#">Bơ</a></li>
-                        <li><a href="#">Dưa chuột</a></li>
-                        <li><a href="#">Cải bắp cải</a></li>
+                        <li><a href="#">Móc khóa</a></li>
+                        <li><a href="#">Gấu bông</a></li>
+                        <li><a href="#">Túi xách</a></li>
+                        <li><a href="#">Hoa</a></li>
+                        <li><a href="#">Đồ lót ly</a></li>
                     </ul>
                 </div>
             </div>
