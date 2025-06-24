@@ -582,6 +582,26 @@ public class OrderDAO {
 
     }
 
+    public static double calculateTotalPrice(int orderId) {
+        double totalPrice = 0.0;
+        String query = "SELECT SUM(priceWithQuantity) AS totalPrice FROM OrderDetails WHERE order_id = ?";
+
+        try (Connection connection = JDBCUtil.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalPrice = rs.getDouble("totalPrice");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error calculating total price for Order ID " + orderId + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return totalPrice;
+    }
+
     public static int deleteOrder(int id) {
         int re = 0;
 

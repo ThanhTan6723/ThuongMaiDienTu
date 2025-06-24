@@ -507,7 +507,7 @@
             <input type="text" id="voucherCode" name="voucher-search" placeholder="Nhập mã voucher">
             <button id="applySearchVoucher" disabled>ÁP DỤNG</button>
         </div>
-        <span id="error" style="text-align: center;color: red"></span>
+<%--        <span id="error" style="text-align: center;color: red"></span>--%>
         <div class="voucher-list-container">
             <div class="voucher-list">
                 <c:if test="${empty savedVouchers}">

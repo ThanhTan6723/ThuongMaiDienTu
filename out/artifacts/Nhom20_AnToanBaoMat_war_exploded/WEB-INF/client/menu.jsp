@@ -227,8 +227,9 @@
             background-color: #94c94d;
         }
 
-
-
+        .featured__item__pic{
+            height: 210px;
+        }
         .featured__item__pic img {
             width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ khung */
             border-radius: 10px 10px 0 0; /* Bo tròn góc trên của hình ảnh */
@@ -285,6 +286,7 @@
         }
         .product-frame {
             position: relative; /* Ensure the overlay is positioned relative to the product image */
+            height: 270px;
         }
         .out-of-stock-text {
             /*background-color: rgba(26, 26, 26, 0.7); !* White background for the text *!*/
@@ -335,6 +337,7 @@
             border-radius: 50%; /* Làm hình ảnh bo tròn nếu cần */
         }
 
+
     </style>
 
 </head>
@@ -349,21 +352,21 @@
 <!-- Breadcrumb Section Begin -->
 
 <!-- Breadcrumb Section Begin -->
-<%--<section class="breadcrumb-section set-bg" data-setbg="assets/img/breadcrumb.jpg">--%>
-<%--    <div class="container">--%>
-<%--        <div class="row">--%>
-<%--            <div class="col-lg-12 text-center">--%>
-<%--                <div class="breadcrumb__text">--%>
-<%--                    <h2>Sản phẩm</h2>--%>
-<%--                    <div class="breadcrumb__option">--%>
-<%--                        <a href="./IndexControll">Trang chủ</a>--%>
-<%--                        <span>Sản phẩm </span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</section>--%>
+<section class="breadcrumb-section set-bg" data-setbg="assets/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Sản phẩm</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./IndexControll">Trang chủ</a>
+                        <span>Sản phẩm </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Breadcrumb Section End -->
 
 <!-- Product Section Begin -->
@@ -373,17 +376,16 @@
             <div class="col-lg-3 col-md-5">
                 <div class="sidebar">
                     <div class="sidebar__item">
-                        <h4>Những sản phẩm len</h4>
+                        <h4>Phân loại</h4>
                         <ul>
                             <li><a href="#">Túi len</a></li>
                             <li><a href="#">Hoa len</a></li>
                             <li><a href="#">Móc khóa</a></li>
                             <li><a href="#">Lót ly</a></li>
-
                         </ul>
                     </div>
                     <div class="sidebar__item sidebar__item__color--option">
-                        <h5><b>LỌC SẢN PHẨM</b></h5>
+                        <h5><b>Lọc sản phẩm</b></h5>
                         <div id="filter" class="filter-container">
                             <form id="filterForm">
                                 <fieldset style="border: 2px solid #82ae46;">
@@ -436,37 +438,9 @@
 
                         </div>
                     </div>
-
-                    <div class="sidebar__item">
-                        <h4>Popular Size</h4>
-                        <div class="sidebar__item__size">
-                            <label for="large">
-                                Large
-                                <input type="radio" id="large">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="medium">
-                                Medium
-                                <input type="radio" id="medium">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="small">
-                                Small
-                                <input type="radio" id="small">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="tiny">
-                                Tiny
-                                <input type="radio" id="tiny">
-                            </label>
-                        </div>
-                    </div>
                     <div class="sidebar__item">
                         <div class="latest-product__text">
-                            <h4>Latest Products</h4>
+                            <h4>Sản phẩm nổi bật</h4>
                             <div class="latest-product__slider owl-carousel">
                             </div>
                         </div>
@@ -535,13 +509,13 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                             <div class="product-col">
                                 <div class="featured__item">
-                                    <div class="product-frame">
+                                    <div class="product-frame" style="height: 280px;">
                                             <%--                                        <c:if test="${productCurrentQuantities[o.id] <=0}">--%>
                                             <%--                                            <div class="out-of-stock-overlay">--%>
                                             <%--                                                <span class="out-of-stock-text">Hết hàng</span>--%>
                                             <%--                                            </div>--%>
                                             <%--                                        </c:if>--%>
-                                        <div class="featured__item__pic set-bg" >
+                                        <div class="featured__item__pic set-bg" style="height: 220px">
                                             <a href="${detail}?pid=${o.id}">
                                                 <img src="${o.image}" alt="${o.name}">
                                             </a>

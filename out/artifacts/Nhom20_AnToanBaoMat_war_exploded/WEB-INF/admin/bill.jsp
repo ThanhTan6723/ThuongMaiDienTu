@@ -184,6 +184,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Verify</th>
 <%--                                                <th>Hành động</th>--%>
@@ -220,6 +221,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Verify</th>
                                                 <th>Hành động</th>
@@ -256,6 +258,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Hành động</th>
                                                 <th>Xem chi tiết</th>
@@ -291,6 +294,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                                 <th>Hành động</th>
@@ -326,6 +330,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                             </tr>
@@ -361,6 +366,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                             </tr>
@@ -395,6 +401,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                                 <th>Hành động</th>
@@ -430,6 +437,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                             </tr>
@@ -464,6 +472,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Xem chi tiết</th>
                                                 <th>Hành động</th>
@@ -499,6 +508,7 @@
                                                 <th>Ship</th>
                                                 <th>Giảm giá</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Phuơng thức thanh toán</th>
                                                 <th>Ghi chú đơn hàng</th>
                                                 <th>Hành động</th>
                                                 <th>Xem chi tiết</th>
@@ -599,10 +609,11 @@
                         { data: 'consigneeName' },
                         { data: 'consigneePhone' },
                         { data: 'address' },
-                        { data: 'totalMoney' },
+                        { data: 'total_product' },
                         { data: 'ship' },
                         { data: 'discountValue' },
                         { data: 'totalMoney' },
+                        { data: 'payment' },
                         { data: 'orderNotes' },
                         {
                             data: 'orderStatus',
@@ -650,10 +661,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: 'orderStatus',  // Truyền vào orderStatus từ response JSON
@@ -730,10 +742,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -774,10 +787,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -820,10 +834,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -858,10 +873,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -894,10 +910,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -939,10 +956,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -977,10 +995,11 @@
                         {data: 'consigneeName'},
                         {data: 'consigneePhone'},
                         {data: 'address'},
-                        {data: 'totalMoney'},
-                        {data: 'ship'},
-                        {data: 'discountValue'},
-                        {data: 'totalMoney'},
+                        { data: 'total_product' },
+                        { data: 'ship' },
+                        { data: 'discountValue' },
+                        { data: 'totalMoney' },
+                        { data: 'payment' },
                         {data: 'orderNotes'},
                         {
                             data: null, render: function (data, type, row) {
@@ -1034,10 +1053,11 @@
                         { data: 'consigneeName' },
                         { data: 'consigneePhone' },
                         { data: 'address' },
-                        { data: 'totalMoney' },
+                        { data: 'total_product' },
                         { data: 'ship' },
                         { data: 'discountValue' },
                         { data: 'totalMoney' },
+                        { data: 'payment' },
                         { data: 'orderNotes' },
                         {
                             data: null, render: function (data, type, row) {

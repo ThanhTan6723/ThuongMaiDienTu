@@ -77,7 +77,7 @@
         </li>
         </c:if>
 
-        <c:if test="${acc.role.id == 3 or acc.role.id == 2}">
+        <c:if test="${acc.role.id == 2 or acc.role.id == 3}">
         <li class="nav-item menu-items">
             <a class="nav-link" href="./LoadBillControll">
               <span class="menu-icon">

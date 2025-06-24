@@ -48,6 +48,8 @@ public class WaitingShippingControll extends HttpServlet {
             orderData.put("discountValue", order.getDiscountValue());
             orderData.put("orderNotes", order.getOrderNotes());
             orderData.put("status", status);
+            orderData.put("payment", order.getPayment().getMethodName());
+            orderData.put("total_product", OrderDAO.calculateTotalPrice(order.getId()));
 
             try {
                 // Lấy dữ liệu hiện tại từ cơ sở dữ liệu để kiểm tra tình trạng xác thực của đơn hàng

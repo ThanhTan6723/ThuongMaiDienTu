@@ -222,7 +222,7 @@
 <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
-            <h4>Thanh toán</h4>
+            <h4>Đặt hàng</h4>
             <div class="xBNaac"></div>
             <form action="${pay}" method="get" onsubmit="return validate()">
                 <div class="row" style="background-color: white; padding: 10px">

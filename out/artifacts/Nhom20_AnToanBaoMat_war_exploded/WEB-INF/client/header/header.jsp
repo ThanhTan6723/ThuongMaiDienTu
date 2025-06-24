@@ -85,8 +85,8 @@
                                             <b>Đổi mật khẩu</b></a>
                                     </c:if>
                                     <c:if test="${not empty hasKey}">
-                                        <a href="${pageContext.request.contextPath}/${report}">
-                                            <b>Report key</b></a>
+                                    <a href="${pageContext.request.contextPath}/${report}">
+                                        <b>Report key</b></a>
                                     </c:if>
                                     <a href="${pageContext.request.contextPath}/${logout}">
                                         <b>Đăng xuất</b></a>
@@ -118,10 +118,10 @@
                         <!-- Dropdown Menu for Product Categories -->
                         <ul class="header__menu__dropdown">
                             <li class=""><a href="./ShowProductControl?cid=0">Tất cả</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=1">Móc khoá len</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=2">Túi len và phụ kiện</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=3">Thú len, búp bê handmade</a></li>
-                            <li class=""><a href="./ShowProductControl?cid=4">Hoa len và đồ trang trí</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=1">Rau lá</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=2">Củ quả</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=3">Trái cây</a></li>
+                            <li class=""><a href="./ShowProductControl?cid=4">Nấm</a></li>
 
                         </ul>
                     </li>
@@ -167,11 +167,11 @@
                         <span>Những sản phẩm len</span>
                     </div>
                     <ul>
-                        <li><a href="#">Túi Len</a></li>
-                        <li><a href="#">Hoa Len</a></li>
                         <li><a href="#">Móc khóa</a></li>
-                        <li><a href="#">Lót ly</a></li>
-
+                        <li><a href="#">Gấu bông</a></li>
+                        <li><a href="#">Túi xách</a></li>
+                        <li><a href="#">Hoa</a></li>
+                        <li><a href="#">Đồ lót ly</a></li>
                     </ul>
                 </div>
             </div>

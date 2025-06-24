@@ -424,6 +424,35 @@
         .notification-content span {
             font-weight: bold;
         }
+        .product__details__tab {
+            padding-top: 85px;
+        }
+
+        .product__details__tab .nav-tabs {
+            border-bottom: none;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product__details__tab .nav-tabs:before {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            height: 1px;
+            width: 300px;
+            background: #ebebeb;
+            content: "";
+        }
+
+        .product__details__tab .nav-tabs:after {
+            position: absolute;
+            right: 0;
+            top: 12px;
+            height: 1px;
+            width: 300px;
+            background: #ebebeb;
+            content: "";
+        }
     </style>
     <jsp:include page="./link/link.jsp"></jsp:include>
 </head>
@@ -456,18 +485,6 @@
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large" src="${detail.image}" alt="">
                         </div>
-<%--                        <div class="product__details__pic__slider__nav">--%>
-<%--                            <div class="owl-prev"><i class="fa fa-angle-left"></i></div>--%>
-<%--                            <div class="product__details__pic__slider owl-carousel">--%>
-<%--                                <c:forEach var="o" items="${listImageProduct}">--%>
-<%--                                    <div class="product__details__pic__slider__item">--%>
-<%--                                        <img data-imgbigurl="img/product/details/product-details-3.jpg" src="${o.url}"--%>
-<%--                                             alt="">--%>
-<%--                                    </div>--%>
-<%--                                </c:forEach>--%>
-<%--                            </div>--%>
-<%--                            <div class="owl-next"><i class="fa fa-angle-right"></i></div>--%>
-<%--                        </div>--%>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -503,16 +520,6 @@
                                                     placeholder="">
                             <br>
                             <br>
-<%--                            <button style="padding: 10px 23px; border-radius: 30px; border: none; background-color: #7fad39; text-transform: uppercase; font-weight: 700; color: #fff;--%>
-<%--                                    opacity: ${productCurrentQuantities == 0 ? '0.5' : '1'};--%>
-<%--                                    cursor: ${productCurrentQuantities == 0 ? 'not-allowed' : 'pointer'};"--%>
-<%--                                    type="submit"--%>
-<%--                                    class="button"--%>
-<%--                                    title="<c:out value='Đặt hàng' />"--%>
-<%--                            ${productCurrentQuantities == 0 ? 'disabled' : ''}>--%>
-<%--                                <span><c:out value="Đặt hàng"/></span>--%>
-<%--                            </button>--%>
-
                             <button style="padding: 10px 23px; border-radius: 30px; border: none; background-color: #7fad39; text-transform: uppercase; font-weight: 700; color: #fff;
                                    ;"
                                     type="submit"
@@ -551,14 +558,17 @@
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Mô tả</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " data-toggle="tab" href="#tabs-2" role="tab">Nhà cung cấp</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Nhà cung cấp</a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Đánh giá</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Bình luận</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
+                            <!-- Tab 1: Mô tả -->
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>Thông tin sản phẩm</h6>
@@ -566,7 +576,8 @@
                                     <p>Mô tả : ${detail.description}</p>
                                 </div>
                             </div>
-                            <div class="tab-pane " id="tabs-2" role="tabpanel">
+                            <!-- Tab 2: Nhà cung cấp -->
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>Thông tin về nhà cung cấp</h6>
                                     <c:forEach var="o" items="${listProvider}">
@@ -575,31 +586,26 @@
                                     </c:forEach>
                                 </div>
                             </div>
-
+                            <!-- Tab 3: Đánh giá -->
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="review-container">
                                         <div class="reviews">
                                             <h4><b>Đánh giá cho sản phẩm ${detail.name}</b></h4>
                                             <br>
-                                            <c:if test="${empty reviews}"><h5 style="color: gray">Chưa có đánh giá nào
-                                                cho sản phẩm này</h5></c:if>
+                                            <c:if test="${empty reviews}">
+                                                <h5 style="color: gray">Chưa có đánh giá nào cho sản phẩm này</h5>
+                                            </c:if>
                                             <c:if test="${not empty reviews}">
                                                 <div class="review-statistics">
-                                                    <h5><b>${averageRating} <i
-                                                            class="fa fa-star star-icon"></i> ${allreviews} Đánh giá</b>
-                                                    </h5>
+                                                    <h5><b>${averageRating} <i class="fa fa-star star-icon"></i> ${allreviews} Đánh giá</b></h5>
                                                     <br>
                                                     <div class="stars">
                                                         <c:forEach var="entry" items="${ratingPercentage}">
                                                             <c:set var="i" value="${entry.key}"/>
                                                             <div class="rating-row">
-                                                                <span>${i} <i class="fa fa-star star-iconS"
-                                                                              style="color:#9a9a9a;"></i></span>
-                                                                <div class="bar">
-                                                                    <div class="fill"
-                                                                         style="width: ${entry.value}%;"></div>
-                                                                </div>
+                                                                <span>${i} <i class="fa fa-star star-iconS" style="color:#9a9a9a;"></i></span>
+                                                                <div class="bar"><div class="fill" style="width: ${entry.value}%;"></div></div>
                                                                 <span class="percentage">${entry.value}%</span>
                                                             </div>
                                                         </c:forEach>
@@ -608,16 +614,11 @@
                                                         <div class="filter">
                                                             <span>Lọc đánh giá</span>
                                                             <button class="filter-btn" data-rating="all">Tất cả</button>
-                                                            <button class="filter-btn" data-rating="1">1 <i
-                                                                    class="fa fa-star star-icon"></i></button>
-                                                            <button class="filter-btn" data-rating="2">2 <i
-                                                                    class="fa fa-star star-icon"></i></button>
-                                                            <button class="filter-btn" data-rating="3">3 <i
-                                                                    class="fa fa-star star-icon"></i></button>
-                                                            <button class="filter-btn" data-rating="4">4 <i
-                                                                    class="fa fa-star star-icon"></i></button>
-                                                            <button class="filter-btn" data-rating="5">5 <i
-                                                                    class="fa fa-star star-icon"></i></button>
+                                                            <button class="filter-btn" data-rating="1">1 <i class="fa fa-star star-icon"></i></button>
+                                                            <button class="filter-btn" data-rating="2">2 <i class="fa fa-star star-icon"></i></button>
+                                                            <button class="filter-btn" data-rating="3">3 <i class="fa fa-star star-icon"></i></button>
+                                                            <button class="filter-btn" data-rating="4">4 <i class="fa fa-star star-icon"></i></button>
+                                                            <button class="filter-btn" data-rating="5">5 <i class="fa fa-star star-icon"></i></button>
                                                         </div>
                                                         <div class="sort">
                                                             <span>Xếp theo:</span>
@@ -630,7 +631,6 @@
                                                     </div>
                                                 </div>
                                                 <div id="review-list">
-                                                    <!-- Reviews will be updated here -->
                                                     <c:forEach var="review" items="${reviews}" varStatus="loop">
                                                         <div class="review-item ${loop.index > 1 ? 'hidden' : ''}">
                                                             <h3><b>${review.nameCommenter}</b>
@@ -643,17 +643,15 @@
                                                             </h3>
                                                             <c:if test="${not empty review.image}">
                                                                 <br>
-                                                                <img style="width: 100px;height: 100px;border-radius: 6px"
-                                                                     src="${review.image}">
+                                                                <img style="width: 100px;height: 100px;border-radius: 6px" src="${review.image}">
                                                             </c:if>
-                                                            <div class="cmt"
-                                                                 style="background-color: #fff5e3; margin-top: 15px;padding: 10px; width:60%; border-radius: 5px">
+                                                            <div class="cmt" style="background-color: #fff5e3; margin-top: 15px;padding: 10px; width:60%; border-radius: 5px">
                                                                 <h3>${review.comment}</h3>
                                                             </div>
                                                             <p>${review.dateCreated}</p>
                                                             <c:if test="${not empty review.reply}">
-                                                                <span><img src="/images/tick.png"></span><span
-                                                                    style="font-size: 16px"><b>Golden Fields</b></span>
+                                                                <span><img src="/images/tick.png"></span>
+                                                                <span style="font-size: 16px"><b>Golden Fields</b></span>
                                                                 <span>Đã trả lời</span>
                                                                 <div class="reply">
                                                                     <h3>${review.reply}</h3>
@@ -667,60 +665,94 @@
                                         </div>
                                         <div class="review-footer">
                                             <c:if test="${not empty reviews and allreviews >= 3}">
-                                                <button id="showAllReviewsBtn"
-                                                        style="background-color: #f6f6f6;color: black;"><b>Xem tất
-                                                    cả ${allreviews} đánh giá</b></button>
+                                                <button id="showAllReviewsBtn" style="background-color: #f6f6f6;color: black;"><b>Xem tất cả ${allreviews} đánh giá</b></button>
                                             </c:if>
                                             <button id="writeReviewBtn">Viết đánh giá</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Tab 4: Bình luận -->
+                            <div class="tab-pane" id="tabs-4" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h5>Bình luận sản phẩm</h5>
+                                    <!-- Khu vực danh sách bình luận -->
+                                    <div id="commentList">
+                                        <c:if test="${empty comments}">
+                                            <p style="color: gray;">Chưa có bình luận nào cho sản phẩm này.</p>
+                                        </c:if>
+                                        <c:if test="${not empty comments}">
+                                            <c:forEach var="c" items="${comments}">
+                                                <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+                                                    <p><strong>${c.name}</strong> (${c.createdAt})</p>
+                                                    <p>${c.content}</p>
+                                                    <c:if test="${not empty c.reply}">
+                                                        <div class="reply" style="margin-left: 20px;">
+                                                            <p><strong>Phản hồi:</strong> ${c.reply}</p>
+                                                            <p style="font-size: 12px; color: gray">${c.replyDate}</p>
+                                                        </div>
+                                                    </c:if>
+                                                </div>
+                                            </c:forEach>
+                                        </c:if>
+                                    </div>
+                                    <!-- Khu vực form gửi bình luận -->
+                                    <div id="commentForm" style="margin-top: 20px;">
+                                        <c:if test="${not empty sessionScope.account}">
+                                            <textarea id="commentContent" rows="4" style="width: 100%; border-radius: 5px; padding: 10px;" placeholder="Nhập bình luận của bạn..."></textarea>
+                                            <span id="commentError" class="error" style="color: red;"></span>
+                                            <br>
+                                            <button id="submitComment" style="margin-top: 10px; background-color: #7fad39; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Gửi bình luận</button>
+                                            <input type="hidden" id="commentProductId" value="${detail.id}" />
+                                        </c:if>
+                                        <c:if test="${empty sessionScope.account}">
+                                            <p>Vui lòng <a href="${pageContext.request.contextPath}/LoginControll">đăng nhập</a> để bình luận.</p>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="reviewModal" class="modal">
-                        <div class="modal-content">
-                            <div class="exit"><span class="close">&times;</span></div>
-                            <h3 style="text-align: center;margin-bottom: 20px">Viết đánh giá của bạn</h3>
-                            <form id="reviewForm" action="ReviewControll" method="post" enctype="multipart/form-data">
-                                <input type="hidden" id="id" name="id" value="${detail.id}">
-                                <%--                                <label for="rating">Đánh giá</label>--%>
-                                <div id="rating" style="text-align: center;">
-                                    <i class="fa fa-star star" style="font-size: 25px" data-value="1"></i>
-                                    <i class="fa fa-star star" style="font-size: 25px" data-value="2"></i>
-                                    <i class="fa fa-star star" style="font-size: 25px" data-value="3"></i>
-                                    <i class="fa fa-star star" style="font-size: 25px" data-value="4"></i>
-                                    <i class="fa fa-star star" style="font-size: 25px" data-value="5"></i>
-                                </div>
-                                <span class="error" id="ratingError"></span>
-                                <input type="hidden" id="ratingInput" name="rating" value="0">
-                                <label for="comment">Bình luận</label>
-                                <textarea id="comment" name="comments" rows="6"
-                                          placeholder="Mời bạn chia sẻ cảm nhận..."></textarea>
-                                <span class="error" id="commentError"></span>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="name">Họ tên (bắt buộc)</label>
-                                        <input type="text" id="name" name="name">
-                                        <span class="error" id="nameError"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Số điện thoại (bắt buộc)</label>
-                                        <input type="tel" id="phone" name="phone">
-                                        <span class="error" id="phoneError"></span>
-                                    </div>
-                                </div>
-                                <label for="images">Gửi ảnh thực tế</label>
-                                <span id="image-preview"></span>
-                                <input type="file" id="images" name="images" accept="image/*" multiple>
-                                <button type="submit">Gửi</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
             </div>
-
+                <div id="reviewModal" class="modal">
+                    <div class="modal-content">
+                        <div class="exit"><span class="close">&times;</span></div>
+                        <h3 style="text-align: center;margin-bottom: 20px">Viết đánh giá của bạn</h3>
+                        <form id="reviewForm" action="ReviewControll" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="id" name="id" value="${detail.id}">
+                            <%--                                <label for="rating">Đánh giá</label>--%>
+                            <div id="rating" style="text-align: center;">
+                                <i class="fa fa-star star" style="font-size: 25px" data-value="1"></i>
+                                <i class="fa fa-star star" style="font-size: 25px" data-value="2"></i>
+                                <i class="fa fa-star star" style="font-size: 25px" data-value="3"></i>
+                                <i class="fa fa-star star" style="font-size: 25px" data-value="4"></i>
+                                <i class="fa fa-star star" style="font-size: 25px" data-value="5"></i>
+                            </div>
+                            <span class="error" id="ratingError"></span>
+                            <input type="hidden" id="ratingInput" name="rating" value="0">
+                            <label for="comment">Bình luận</label>
+                            <textarea id="comment" name="comments" rows="6"
+                                      placeholder="Mời bạn chia sẻ cảm nhận..."></textarea>
+                            <span class="error" id="commentError"></span>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Họ tên (bắt buộc)</label>
+                                    <input type="text" id="name" name="name">
+                                    <span class="error" id="nameError"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại (bắt buộc)</label>
+                                    <input type="tel" id="phone" name="phone">
+                                    <span class="error" id="phoneError"></span>
+                                </div>
+                            </div>
+                            <label for="images">Gửi ảnh thực tế</label>
+                            <span id="image-preview"></span>
+                            <input type="file" id="images" name="images" accept="image/*" multiple>
+                            <button type="submit">Gửi</button>
+                        </form>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="row">
@@ -843,6 +875,54 @@
                 e.preventDefault();
             }
         });
+    });
+</script>
+<script>
+    document.getElementById("submitComment").addEventListener("click", function () {
+        const content = document.getElementById("commentContent").value.trim();
+        const productId = document.getElementById("commentProductId").value;
+        const errorSpan = document.getElementById("commentError");
+
+        errorSpan.textContent = "";
+
+        if (content === "") {
+            errorSpan.textContent = "Vui lòng nhập nội dung bình luận.";
+            return;
+        }
+
+        fetch('${pageContext.request.contextPath}/CommentServlet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: new URLSearchParams({
+                comment: content,
+                productId: productId
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => { throw data; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === "success") {
+                    console.log("BBB", content);
+                    // Thêm bình luận mới vào đầu danh sách
+                    const commentList = document.getElementById("commentList");
+                    const newComment = document.createElement("div");
+                    newComment.style.borderBottom = "1px solid #ccc";
+                    newComment.style.padding = "10px 0";
+                    newComment.innerHTML = "<p><strong>Bạn</strong> (Vừa xong)</p>" + "<p>" + content + "</p>";
+                    commentList.insertBefore(newComment, commentList.firstChild);
+
+                    document.getElementById("commentContent").value = "";
+                }
+            })
+            .catch(error => {
+                errorSpan.textContent = error.message || "Đã xảy ra lỗi. Vui lòng thử lại.";
+            });
     });
 </script>
 <script>
@@ -970,11 +1050,11 @@
                     // Xử lý phản hồi thành công từ server
                     if (response.success) {
                         alert('Đánh giá của bạn đã được gửi đi để phê duyệt');
-                        $('#reviewModal').hide() // Đóng modal khi gửi thành công
+                        $('#reviewModal').hide(); // Đóng modal khi gửi thành công
+                        $('body').removeClass('modal-open'); // <-- THÊM DÒNG NÀY
                         $('#reviewForm')[0].reset(); // Reset form
                         $('#image-preview').text('');
-                        $('.star').removeClass('selected'); // Xóa các đánh giá đã chọn
-
+                        $('.star').removeClass('selected');
                     } else {
                         // Hiển thị thông báo lỗi từ server
                         $('#ratingError').text(response.errors.rating || '');

@@ -187,46 +187,51 @@
                 dataSrc: ''
             },
             columns: [
-                { data: 'id' },
-                { data: 'nameCommenter' },
-                { data: 'phoneNumberCommenter' },
-                { data: 'productEvaluated.name' },
-                { data: 'rating' },
+                { data: 'id', render: function(data) { return data ? data : 'N/A'; } },
+                { data: 'nameCommenter', render: function(data) { return data ? data : 'N/A'; } },
+                { data: 'phoneNumberCommenter', render: function(data) { return data ? data : 'N/A'; } },
+                {
+                    data: 'productEvaluated.name',
+                    render: function(data) { return data ? data : 'N/A'; }
+                },
+                { data: 'rating', render: function(data) { return (data != null && data !== '') ? data : 'N/A'; } },
                 {
                     data: 'image',
                     render: function(data, type, row) {
-                        return data ? '<img src="' + (data) + '" style="max-width:100px; max-height:80px;">':'null';
+                        return data ? '<img src="' + (data) + '" style="max-width:100px; max-height:80px;">' : 'N/A';
                     }
                 },
-                { data: 'comment' },
-                { data: 'dateCreated' },
+                { data: 'comment', render: function(data) { return data ? data : 'N/A'; } },
+                { data: 'dateCreated', render: function(data) { return data ? data : 'N/A'; } },
                 {
                     data: 'isAccept',
                     render: function (data, type, row) {
                         if (data) {
                             return '<span class="approved">Đã phê duyệt</span>';
-                        } else {
+                        } else if (data === false) {
                             return '<span class="pending">Chờ phê duyệt</span>';
+                        } else {
+                            return 'N/A';
                         }
                     }
                 },
-                { data: 'reply', defaultContent: '' },
-                { data: 'dateReply', defaultContent: '' },
+                { data: 'reply', render: function(data) { return data ? data : 'N/A'; } },
+                { data: 'dateReply', render: function(data) { return data ? data : 'N/A'; } },
                 {
                     data: null,
                     render: function(data, type, row) {
                         if (row.isAccept) {
                             return `
-                            <a href="#" class="message-icon" data-id="${row.id}">
-                                <i class="fa-solid fa-message" style="color:#37e737; font-size: 20px; cursor: pointer;"></i>
-                            </a>
-                            <a href="DeleteProductControll?id=${row.id}" class="delete-icon" data-id="${row.id}">
-                                <i class="fa-solid fa-trash" style="color:#efe63a; font-size: 20px; cursor: pointer; margin-right: 15px;"></i>
-                            </a>`;
+                <a href="#" class="message-icon" data-id="${row.id}">
+                    <i class="fa-solid fa-message" style="color:#37e737; font-size: 20px; cursor: pointer;"></i>
+                </a>
+                <a href="DeleteProductControll?id=${row.id}" class="delete-icon" data-id="${row.id}">
+                    <i class="fa-solid fa-trash" style="color:#efe63a; font-size: 20px; cursor: pointer; margin-right: 15px;"></i>
+                </a>`;
                         } else {
                             return `
-                            <button type="button" class="btn btn-success approve-review" data-id="${row.id}">Approve</button>
-                        `;
+                <button type="button" class="btn btn-success approve-review" data-id="${row.id}">Approve</button>
+            `;
                         }
                     }
                 }

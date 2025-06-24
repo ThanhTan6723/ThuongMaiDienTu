@@ -139,7 +139,7 @@ public class VerifyDAO {
                     return resultSet.getString("digital_signature");
                 } else {
                     // Nếu không tìm thấy chữ ký cho orderId này
-                    throw new Exception("No signature found for order id: " + orderId);
+                    return null;
                 }
             }
         } catch (SQLException e) {
@@ -190,6 +190,7 @@ public class VerifyDAO {
 
         // 2. Lấy chữ ký số của đơn hàng
         String digitalSignature = getSignedData(orderId);
+        System.out.println("Chữ kí: "+digitalSignature);
         if (digitalSignature == null) {
             return false; // Nếu không lấy được digitalSignature, trả về false
         }
@@ -305,6 +306,6 @@ public class VerifyDAO {
  //       System.out.println(VerifyDAO.insertHashOrder(2, 1, "hashData", "2024-12-19"));
   //      updateOrderStatus(1);
 //        System.out.println(isOrderChanged(1));
-        System.out.println(VerifyDAO.verifyOrder(10));
+        System.out.println(VerifyDAO.verifyOrder(3));
     }
 }

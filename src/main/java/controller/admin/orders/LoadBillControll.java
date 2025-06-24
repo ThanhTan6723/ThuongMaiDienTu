@@ -16,7 +16,7 @@ public class LoadBillControll extends HttpServlet {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         if (account != null) {
-            if (account.getRole().getId() == 3 || account.getRole().getId() == 1) {
+            if (account.getRole().getId() == 3 || account.getRole().getId() == 2) {
                 request.getRequestDispatcher("WEB-INF/admin/bill.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/IndexControll");
